@@ -11,7 +11,7 @@
 ```
 test.py
 ```
-- [tutorial video for korean](http://hunkim.github.io/ml/)
+- [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
   - linear regression
   ```
   linear_regression1.py

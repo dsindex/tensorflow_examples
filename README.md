@@ -1,5 +1,10 @@
 # tensorflow
 
+- [tensorflow](https://www.tensorflow.org/)
+  - how to install in OS X
+    - install docker
+    - [docker installation](https://www.tensorflow.org/versions/r0.7/get_started/os_setup.html#docker-installation)
+	  - Ubuntu 4.1.19
 - test code for tensorflow
 - very simple test code
 ```

@@ -20,6 +20,8 @@ y = tf.div(1., 1.+tf.exp(-g))
 
 # cross entropy cost =  -(1/m) * { y_data*log(y) + (1-y_data)*log(1-y) }
 cost = -tf.reduce_mean(Y*tf.log(y) + (1-Y)*tf.log(1-y))
+# why we'd better to use cross entropy cost function rather than quardratic cost function?
+# http://neuralnetworksanddeeplearning.com/chap3.html 'learning slow problem'
 
 a = tf.Variable(0.1)
 optimizer = tf.train.GradientDescentOptimizer(a)

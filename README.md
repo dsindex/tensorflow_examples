@@ -28,6 +28,7 @@ test.py
   - softmax regression
 - MNIST softmax regression test code
 ```
+download MNIST data from http://yann.lecun.com/exdb/mnist/
 mnist.py
 ```
 

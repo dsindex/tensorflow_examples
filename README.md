@@ -14,6 +14,7 @@ test.py
 - [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
   - linear regression
   ```
+  * predict real value
   linear_regression1.py
   linear_regression2.py
   linear_regression3.py
@@ -22,13 +23,19 @@ test.py
   ```
   - logistic regression
   ```
+  * binary classification 0 or 1
   logistic_regression1.py
   train_logistic.txt
   ```
   - softmax regression
+  ```
+  * multinomial classification
+  softmax_regression1.py
+  train_softmax.txt
+  ```
 - MNIST softmax regression test code
 ```
 download MNIST data from http://yann.lecun.com/exdb/mnist/
-mnist.py
+softmax_regression2.py
 ```
 

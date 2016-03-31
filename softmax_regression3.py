@@ -14,9 +14,9 @@ print '[training]'
 xy_data = np.loadtxt('train_iris.txt', unpack=True, dtype='float32')
 
 x_data = xy_data[1:]
-batch_size = len(x_data[0])
+train_size = len(x_data[0])
 # add x0 for bias
-x0 = np.array([[1]*batch_size])
+x0 = np.array([[1]*train_size])
 x_data = np.concatenate((x0, x_data), axis=0) # 5 x None
 x_data = np.transpose(x_data)                 # None x 5
 '''

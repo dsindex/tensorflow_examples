@@ -38,4 +38,9 @@ test.py
 download MNIST data from http://yann.lecun.com/exdb/mnist/
 softmax_regression2.py
 ```
+- IRIS softmax regression test code
+```
+softmax_regression3.py
+train_iris.txt
+```
 

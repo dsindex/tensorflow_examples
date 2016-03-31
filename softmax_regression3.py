@@ -43,7 +43,7 @@ print y_data
 X = tf.placeholder("float", [None, 5]) # row : infinity, col : 5 for x
 Y = tf.placeholder("float", [None, 3]) # row : infinity, col : 3 for y target class which is encoded in one-hot representation
 
-W = tf.Variable(tf.zeros([5,3])) # row : 3 dimensions for x, col : 3 dimensions for y
+W = tf.Variable(tf.zeros([5,3])) # row : 5 dimensions for x, col : 3 dimensions for y
 
 y = tf.nn.softmax(tf.matmul(X, W)) # softmax, (None x 5) * ( 5 x 3 )
 

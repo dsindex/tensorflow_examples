@@ -40,7 +40,8 @@ softmax_regression2.py
 ```
 - IRIS softmax regression test code
 ```
-softmax_regression3.py
+softmax_regression3_train.py
+softmax_regression3_inference.py
 train_iris.txt
 ```
 

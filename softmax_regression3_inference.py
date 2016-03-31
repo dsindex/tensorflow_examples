@@ -6,7 +6,6 @@ import numpy as np
 
 print '[inference]'
 X = tf.placeholder("float", [None, 5]) # row : infinity, col : 5 for x
-Y = tf.placeholder("float", [None, 3]) # row : infinity, col : 3 for y target class which is encoded in one-hot representation
 
 W = tf.Variable(tf.zeros([5,3])) # row : 5 dimensions for x, col : 3 dimensions for y
 
@@ -33,3 +32,5 @@ print p, sess.run(tf.arg_max(p, 1))
 
 p = sess.run(y, feed_dict={X:[[1,2,14,33,50], [1,24,56,31,67]]})
 print p, sess.run(tf.arg_max(p, 1))
+
+sess.close()

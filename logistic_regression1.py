@@ -6,6 +6,7 @@ import numpy as np
 # logistic regression test
 # y = 1 / ( 1 + e^(-WX) )
 
+print '[training]'
 xy_data = np.loadtxt('train_logistic.txt', unpack=True, dtype='float32')
 x_data = xy_data[0:-1]
 y_data = xy_data[-1]
@@ -13,7 +14,6 @@ y_data = xy_data[-1]
 X = tf.placeholder(tf.float32)
 Y = tf.placeholder(tf.float32)
 
-print '[training]'
 W = tf.Variable(tf.random_uniform([1,len(x_data)], -1.0, 1.0))
 g = tf.matmul(W, X)
 y = tf.div(1., 1.+tf.exp(-g))

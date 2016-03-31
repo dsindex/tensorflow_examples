@@ -41,3 +41,5 @@ print sess.run(y, feed_dict={X:[[1], [2], [3]]})
 print sess.run(y, feed_dict={X:[[1], [5], [5]]})
 print sess.run(y, feed_dict={X:[[1,1], [4,3], [3,5]]})
 
+sess.close()
+

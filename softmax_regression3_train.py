@@ -57,18 +57,14 @@ train = optimizer.minimize(cost)
 init = tf.initialize_all_variables()
 sess = tf.Session()
 sess.run(init)
-
+saver = tf.train.Saver() # save all variables
+checkpoint_dir = './'
+checkpoint_file = 'iris.ckpt'
 for i in range(2001):
 	sess.run(train, feed_dict={X:x_data, Y:y_data})
 	if i % 20 == 0 :
 		print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
 
-print '[inference]'
-p = sess.run(y, feed_dict={X:[[1,2,14,33,50]]}) # 1 0 0 -> type 0
-print p, sess.run(tf.arg_max(p, 1))
-
-p = sess.run(y, feed_dict={X:[[1,24,56,31,67]]}) # 0 1 0 -> type 1
-print p, sess.run(tf.arg_max(p, 1))
-
-p = sess.run(y, feed_dict={X:[[1,2,14,33,50], [1,24,56,31,67]]})
-print p, sess.run(tf.arg_max(p, 1))
+print '[save model]'
+saver.save(sess, checkpoint_dir + checkpoint_file)
+sess.close()

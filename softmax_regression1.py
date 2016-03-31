@@ -70,3 +70,5 @@ print p, sess.run(tf.arg_max(p, 1))
 
 p = sess.run(y, feed_dict={X:[[1,2,1], [1,5,5]]})
 print p, sess.run(tf.arg_max(p, 1))
+
+sess.close()

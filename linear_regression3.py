@@ -26,3 +26,4 @@ for i in range(2001):
 	if i % 20 == 0 :
 		print i, sess.run(cost), sess.run(W)
 
+sess.close()

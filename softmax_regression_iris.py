@@ -54,17 +54,24 @@ learning_rate = tf.Variable(0.001)
 optimizer = tf.train.GradientDescentOptimizer(learning_rate)
 train = optimizer.minimize(cost)
 
+correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(Y,1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
 init = tf.initialize_all_variables()
 sess = tf.Session()
 sess.run(init)
 saver = tf.train.Saver() # save all variables
 checkpoint_dir = './'
 checkpoint_file = 'iris.ckpt'
-for i in range(2001):
+for i in range(2000):
+	if i % 100 == 0 :
+		print "step : ", i
+		print "cost : ", sess.run(cost, feed_dict={X: x_data, Y: y_data})
+		print sess.run(W)
+		print "training accuracy :", sess.run(accuracy, feed_dict={X: x_data, Y: y_data})
 	sess.run(train, feed_dict={X:x_data, Y:y_data})
-	if i % 20 == 0 :
-		print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
 
 # save model
 saver.save(sess, checkpoint_dir + checkpoint_file)
+
 sess.close()

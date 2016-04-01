@@ -74,3 +74,8 @@ test.py
 * accuracy is around 99%
 * using CPU, training is very slow!
 ```
+- tutorial
+  - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
+  - [neural network and deep learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)
+  - [RNN](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
+  - [LSTM](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)

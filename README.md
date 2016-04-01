@@ -42,6 +42,7 @@ test.py
   softmax_regression_iris_train.py
   softmax_regression_iris_inference.py
   train_iris.txt
+* training accuracy : around 96%
 * for other traning data :
   - convert training data format into the format like train_iris.txt
   - modify softmax_regression3_train.py
@@ -55,7 +56,7 @@ test.py
 * download MNIST data from http://yann.lecun.com/exdb/mnist/
 * code
   softmax_regression_mnist.py
-* accuracy is around 92%
+* accuracy : around 92%
 * softmax regression 
   = multinomial logistic regression 
   = maximum entropy classifier
@@ -65,13 +66,13 @@ test.py
 ```
 * code
   mlp_mnist.py
-* accuracy is around 98%
+* accuracy : around 98%
 ```
 - MNIST convolutaional neural network test code
 ```
 * code
   conv_mnist.py
-* accuracy is around 99%
+* accuracy : around 99%
 * using CPU, training is very slow!
 ```
 - tutorial

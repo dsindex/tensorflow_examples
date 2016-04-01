@@ -54,6 +54,10 @@ test.py
   - modify softmax_regression3_inference.py
   - restore model and test inference
   - these steps are basic usage what you are familar with
-  
+```
+- MNIST convolutaional neural network test code
+```
+* code
+  conv1.py
 ```
 

@@ -54,7 +54,8 @@ cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))
 train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-sess = tf.Session()
+NUM_THREADS = 5
+sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS))
 init = tf.initialize_all_variables()
 sess.run(init)
 for i in range(20000):

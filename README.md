@@ -6,6 +6,7 @@
   - how to install in OS X
     - install docker
     - [tensorflow docker installation](https://www.tensorflow.org/versions/r0.7/get_started/os_setup.html#docker-installation)
+  - you can also install tensorflow in Ubuntu(recommended)
 - very simple test code
 ```
 test.py
@@ -71,4 +72,5 @@ test.py
 * code
   conv1.py
 * accuracy is around 99%
+* using CPU, training is very slow!
 ```

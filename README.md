@@ -39,8 +39,8 @@ test.py
 - IRIS softmax regression test code
 ```
 * code
-  softmax_regression3_train.py
-  softmax_regression3_inference.py
+  softmax_regression_iris_train.py
+  softmax_regression_iris_inference.py
   train_iris.txt
 * for other traning data :
   - convert training data format into the format like train_iris.txt
@@ -54,7 +54,7 @@ test.py
 ```
 * download MNIST data from http://yann.lecun.com/exdb/mnist/
 * code
-  softmax_regression2.py
+  softmax_regression_mnist.py
 * accuracy is around 92%
 * softmax regression 
   = multinomial logistic regression 
@@ -64,13 +64,13 @@ test.py
 - MNIST multi-layer perceptron test code
 ```
 * code
-  mlp1.py
+  mlp_mnist.py
 * accuracy is around 98%
 ```
 - MNIST convolutaional neural network test code
 ```
 * code
-  conv1.py
+  conv_mnist.py
 * accuracy is around 99%
 * using CPU, training is very slow!
 ```

@@ -81,6 +81,13 @@ test.py
 * accuracy : around 99%
 * using CPU, training is very slow!
 ```
+- now, we are going to use word2vec for modeling sentiment classification problem
+```
+* build word2vec model
+* construct sample sentences with its sentiment(good, bad, normal)
+* build neural net, for example, mlp
+* compare classifiery using word features itself vs word2vec features
+```
 - tutorial
   - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
   - [neural network and deep learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)

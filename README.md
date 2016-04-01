@@ -54,7 +54,13 @@ test.py
 * download MNIST data from http://yann.lecun.com/exdb/mnist/
 * code
   softmax_regression2.py
-* accuracy is around 91~92%
+* accuracy is around 92%
+```
+- MNIST multi-layer perceptron test code
+```
+* code
+  mlp1.py
+* accuracy is around 98%
 ```
 - MNIST convolutaional neural network test code
 ```
@@ -62,4 +68,3 @@ test.py
   conv1.py
 * accuracy is around 99%
 ```
-

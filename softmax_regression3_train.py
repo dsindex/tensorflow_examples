@@ -10,7 +10,6 @@ def one_hot(y_data) :
 	b[np.arange(a.size),a] = 1
 	return b
 
-print '[training]'
 xy_data = np.loadtxt('train_iris.txt', unpack=True, dtype='float32')
 
 x_data = xy_data[1:]
@@ -43,10 +42,11 @@ print y_data
 X = tf.placeholder("float", [None, 5]) # row : infinity, col : 5 for x
 Y = tf.placeholder("float", [None, 3]) # row : infinity, col : 3 for y target class which is encoded in one-hot representation
 
+# output layer
 W = tf.Variable(tf.zeros([5,3])) # row : 5 dimensions for x, col : 3 dimensions for y
-
 y = tf.nn.softmax(tf.matmul(X, W)) # softmax, (None x 5) * ( 5 x 3 )
 
+# training
 # cross entropy cost
 cost = tf.reduce_mean(-tf.reduce_sum(Y*tf.log(y), reduction_indices=1))
 
@@ -65,6 +65,6 @@ for i in range(2001):
 	if i % 20 == 0 :
 		print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
 
-print '[save model]'
+# save model
 saver.save(sess, checkpoint_dir + checkpoint_file)
 sess.close()

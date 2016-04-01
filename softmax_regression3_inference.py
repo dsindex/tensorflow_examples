@@ -4,11 +4,9 @@ import sys
 import tensorflow as tf
 import numpy as np
 
-print '[inference]'
+# prediction function
 X = tf.placeholder("float", [None, 5]) # row : infinity, col : 5 for x
-
 W = tf.Variable(tf.zeros([5,3])) # row : 5 dimensions for x, col : 3 dimensions for y
-
 y = tf.nn.softmax(tf.matmul(X, W)) # softmax, (None x 5) * ( 5 x 3 )
 
 init = tf.initialize_all_variables()

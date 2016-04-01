@@ -6,7 +6,6 @@ import numpy as np
 # logistic regression test
 # y = 1 / ( 1 + e^(-WX) )
 
-print '[training]'
 xy_data = np.loadtxt('train_logistic.txt', unpack=True, dtype='float32')
 x_data = xy_data[0:-1]
 y_data = xy_data[-1]
@@ -14,10 +13,12 @@ y_data = xy_data[-1]
 X = tf.placeholder(tf.float32)
 Y = tf.placeholder(tf.float32)
 
+# output layer
 W = tf.Variable(tf.random_uniform([1,len(x_data)], -1.0, 1.0))
 g = tf.matmul(W, X)
 y = tf.div(1., 1.+tf.exp(-g))
 
+# training
 # cross entropy cost =  -(1/m) * { y_data*log(y) + (1-y_data)*log(1-y) }
 cost = -tf.reduce_mean(Y*tf.log(y) + (1-Y)*tf.log(1-y))
 # why we'd better to use cross entropy cost function rather than quardratic cost function?
@@ -36,7 +37,7 @@ for i in range(2001):
 	if i % 20 == 0 :
 		print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
 
-print '[inference]'
+# inference
 print sess.run(y, feed_dict={X:[[1], [2], [3]]})
 print sess.run(y, feed_dict={X:[[1], [5], [5]]})
 print sess.run(y, feed_dict={X:[[1,1], [4,3], [3,5]]})

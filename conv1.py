@@ -18,7 +18,6 @@ def max_pool_2x2(x):
 	return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
 mnist = input_data.read_data_sets("./MNIST_data/", one_hot=True)
-
 x = tf.placeholder(tf.float32, [None, 28*28])
 x_image = tf.reshape(x, [-1,28,28,1])     # 784 -> 28 x 28 x 1
 y_ = tf.placeholder(tf.float32, [None, 10])
@@ -51,11 +50,12 @@ y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
 
 # training
 cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))
-train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+cost = tf.reduce_mean(cross_entropy)
+train_step = tf.train.AdamOptimizer(1e-4).minimize(cost)
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 NUM_THREADS = 5
-sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS,inter_op_parallelism_threads=NUM_THREADS))
+sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS,inter_op_parallelism_threads=NUM_THREADS,log_device_placement=True))
 init = tf.initialize_all_variables()
 sess.run(init)
 for i in range(20000):

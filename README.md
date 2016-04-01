@@ -86,8 +86,8 @@ test.py
 * build word2vec model
   https://github.com/dsindex/word2vec
 * construct sample sentences with its sentiment(good, bad, normal)
-* build neural net, for example, mlp
-* compare classifiery using word features itself vs word2vec features
+* build neural net, for example, multi-layer perceptron
+* compare classifier using word features itself and word2vec features
 ```
 - tutorial
   - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)

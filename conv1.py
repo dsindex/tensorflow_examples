@@ -58,14 +58,15 @@ NUM_THREADS = 5
 sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS,inter_op_parallelism_threads=NUM_THREADS))
 init = tf.initialize_all_variables()
 sess.run(init)
-for i in range(1000):
+for i in range(20000):
 	batch_xs, batch_ys = mnist.train.next_batch(50)
 	if i % 100 == 0:
 		print "step : ", i, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys, keep_prob: 1.0})	
 	sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys, keep_prob: 0.5})
 
 # inference
-test_accuracy = sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})	
+test_xs, test_ys = mnist.test.next_batch(10000)
+test_accuracy = sess.run(accuracy, feed_dict={x: test_xs, y_: test_ys, keep_prob: 1.0})	
 print "test accuracy : ", test_accuracy
 
 sess.close()

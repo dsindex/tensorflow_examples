@@ -55,6 +55,10 @@ test.py
 * code
   softmax_regression2.py
 * accuracy is around 92%
+* softmax regression 
+  = multinomial logistic regression 
+  = maximum entropy classifier
+  = neural net without hidden layer
 ```
 - MNIST multi-layer perceptron test code
 ```

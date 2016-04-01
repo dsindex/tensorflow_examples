@@ -51,6 +51,12 @@ test.py
   - restore model and test inference
   - these steps are basic usage what you are familar with
 ```
+- IRIS multi-layer perceptron test code
+```
+* code
+  mlp_iris.py
+* training accuracy : around 96%
+```
 - MNIST softmax regression test code
 ```
 * download MNIST data from http://yann.lecun.com/exdb/mnist/

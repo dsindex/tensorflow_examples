@@ -35,12 +35,6 @@ test.py
     softmax_regression1.py
     train_softmax.txt
   ```
-- MNIST softmax regression test code
-```
-* download MNIST data from http://yann.lecun.com/exdb/mnist/
-* code
-  softmax_regression2.py
-```
 - IRIS softmax regression test code
 ```
 * code
@@ -55,9 +49,17 @@ test.py
   - restore model and test inference
   - these steps are basic usage what you are familar with
 ```
+- MNIST softmax regression test code
+```
+* download MNIST data from http://yann.lecun.com/exdb/mnist/
+* code
+  softmax_regression2.py
+* accuracy is around 91~92%
+```
 - MNIST convolutaional neural network test code
 ```
 * code
   conv1.py
+* accuracy is around 99%
 ```
 

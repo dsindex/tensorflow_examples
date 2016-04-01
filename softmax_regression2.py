@@ -24,16 +24,17 @@ init = tf.initialize_all_variables()
 sess = tf.Session()
 sess.run(init)
 
-# Learning
-for i in range(1000):
-	batch_xs, batch_ys = mnist.train.next_batch(100)
-	print i, sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
-
-print '[inference]'
-# Validation
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
+# Learning
+for i in range(1000):
+	batch_xs, batch_ys = mnist.train.next_batch(100)
+	if i % 100 == 0:
+		print "step : ", i, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys})	
+	sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
+
+print '[inference]'
 # Result should be approximately 91%.
 print sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
 

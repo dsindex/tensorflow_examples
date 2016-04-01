@@ -84,6 +84,7 @@ test.py
 - now, we are going to use word2vec for modeling sentiment classification problem
 ```
 * build word2vec model
+  https://github.com/dsindex/word2vec
 * construct sample sentences with its sentiment(good, bad, normal)
 * build neural net, for example, mlp
 * compare classifiery using word features itself vs word2vec features

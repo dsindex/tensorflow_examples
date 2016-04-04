@@ -90,7 +90,7 @@ test.py
   * build neural net, for example, multi-layer perceptron
   * compare classifier using word features itself and word2vec features
   ```
-  - ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
+  ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
 - tutorial
   - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
   - [neural network and deep learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)

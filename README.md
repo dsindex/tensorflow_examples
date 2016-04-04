@@ -82,13 +82,15 @@ test.py
 * using CPU, training is very slow!
 ```
 - we are now going to use word2vec for modeling sentiment classification problem
-```
-* build word2vec model
-  word2vec.py
-* construct sample sentences with its sentiment(good, bad, normal)
-* build neural net, for example, multi-layer perceptron
-* compare classifier using word features itself and word2vec features
-```
+  - steps
+  ```
+  * build word2vec model
+    word2vec.py
+  * construct sample sentences with its sentiment(good, bad, normal)
+  * build neural net, for example, multi-layer perceptron
+  * compare classifier using word features itself and word2vec features
+  ```
+  - ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
 - tutorial
   - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
   - [neural network and deep learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)

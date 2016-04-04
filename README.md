@@ -81,10 +81,9 @@ test.py
 * accuracy : around 99%
 * using CPU, training is very slow!
 ```
-- now, we are going to use word2vec for modeling sentiment classification problem
+- we are now going to use word2vec for modeling sentiment classification problem
 ```
 * build word2vec model
-  https://github.com/dsindex/word2vec
 * construct sample sentences with its sentiment(good, bad, normal)
 * build neural net, for example, multi-layer perceptron
 * compare classifier using word features itself and word2vec features

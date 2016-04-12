@@ -87,6 +87,12 @@ test.py
   lstm_mnist.py
 * accuracy : around 97%
 ```
+- CHAR-RNN
+```
+* sequence to sequence learning
+* code
+
+```
 - we are now going to use word2vec for modeling sentiment classification problem
   - steps
   ```

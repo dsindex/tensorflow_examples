@@ -81,6 +81,12 @@ test.py
 * accuracy : around 99%
 * using CPU, training is very slow!
 ```
+- MNIST LSTM(recurrent neural network) test code
+```
+* code
+  lstm_mnist.py
+* accuracy : around 97%
+```
 - we are now going to use word2vec for modeling sentiment classification problem
   - steps
   ```

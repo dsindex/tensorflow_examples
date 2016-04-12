@@ -1,5 +1,9 @@
 #!/bin/env python
 
+'''
+reference : https://www.tensorflow.org/versions/r0.7/tutorials/mnist/pros/index.html
+'''
+
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 

@@ -5,8 +5,9 @@
 - [tensorflow](https://www.tensorflow.org/)
   - how to install in OS X
     - install docker
-    - [tensorflow docker installation](https://www.tensorflow.org/versions/r0.7/get_started/os_setup.html#docker-installation)
-    - [installation from source](https://www.tensorflow.org/versions/r0.7/get_started/os_setup.html#installing-from-sources)
+    - [tensorflow docker installation](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#docker-installation)
+	- [installation using pip](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#pip-installation)
+    - [installation from source](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#installing-from-sources)
 - simple test code
 ```
 test.py

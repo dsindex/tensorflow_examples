@@ -74,6 +74,9 @@ test.py
 * code
   mlp_mnist.py
 * accuracy : around 98%
+* distributed
+  mlp_mnist_dist.py
+  mlp_mnist_dist.sh
 ```
 - MNIST convolutaional neural network test code
 ```
@@ -87,9 +90,6 @@ test.py
 * code
   lstm_mnist.py
 * accuracy : around 97%
-```
-- MNIST multi-layer perceptron distributed test code
-```
 ```
 - CHAR-RNN
 ```

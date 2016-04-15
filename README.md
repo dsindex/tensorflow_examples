@@ -87,6 +87,9 @@ test.py
   lstm_mnist.py
 * accuracy : around 97%
 ```
+- MNIST multi-layer perceptron distributed test code
+```
+```
 - CHAR-RNN
 ```
 * sequence to sequence learning
@@ -103,9 +106,11 @@ test.py
   * compare classifier using word features itself and word2vec features
   ```
   ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
-- tutorial
+- references
   - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
   - [Neural Network and Deep Learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)
   - [RNN](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
   - [LSTM](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
   - [Word2Vec](https://github.com/dsindex/blog/wiki/%5BWord2Vec%5D-Neural-Language-Model-and-Word2Vec)
+  - [tensorspark](https://github.com/adatao/tensorspark?files=1) 
+  - [distributed tensorflow](https://www.tensorflow.org/versions/r0.8/how_tos/distributed/index.html)

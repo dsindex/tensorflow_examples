@@ -75,8 +75,9 @@ test.py
   mlp_mnist.py
 * accuracy : around 98%
 * distributed
-  mlp_mnist_dist.py
   mlp_mnist_dist.sh
+  mlp_mnist_dist.py
+  mlp_mnist_dist_inference.py
 ```
 - MNIST convolutaional neural network test code
 ```

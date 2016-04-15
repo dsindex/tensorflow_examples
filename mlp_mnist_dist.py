@@ -32,7 +32,7 @@ def main(_):
 	print cluster._cluster_spec
 
 	# Create and start a server for the local task.
-	server = tf.train.Server(cluster, job_name=FLAGS.job_name, task_index=FLAGS.task_index)
+	server = tf.train.Server(cluster.as_cluster_def(), job_name=FLAGS.job_name, task_index=FLAGS.task_index)
 
 	if FLAGS.job_name == "ps" :
 		server.join()
@@ -84,6 +84,8 @@ def main(_):
 	  		# See `tf.train.SyncReplicasOptimizer` for additional details on how to
 	  		# perform *synchronous* training.
 			batch_xs, batch_ys = mnist.train.next_batch(50)
+			if step % 100 == 0:
+				print "step : ", step, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys})	
 	  		_, step = sess.run([train_op, global_step], feed_dict={x: batch_xs, y_: batch_ys})
 
 if __name__ == "__main__":

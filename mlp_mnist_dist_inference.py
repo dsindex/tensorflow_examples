@@ -1,4 +1,4 @@
-#!/bin/env python
+#!./bin/env python
 
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
@@ -31,20 +31,21 @@ cost = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y)))
 train_step = tf.train.GradientDescentOptimizer(0.01).minimize(cost)
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-NUM_THREADS = 5
-sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS,inter_op_parallelism_threads=NUM_THREADS,log_device_placement=True))
+
 init = tf.initialize_all_variables()
+sess = tf.Session()
 sess.run(init)
 saver = tf.train.Saver() # save all variables
 checkpoint_dir = './train_logs'
-checkpoint_file = 'mlp.ckpt'
-for i in range(20000):
-	batch_xs, batch_ys = mnist.train.next_batch(50)
-	if i % 100 == 0:
-		print "step : ", i, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys})	
-	sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
+ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
+if ckpt and ckpt.model_checkpoint_path :
+	saver.restore(sess, ckpt.model_checkpoint_path)
+else :
+	sys.stderr.write("no checkpoint found" + '\n')
+	sys.exit(-1)
 
-# save model
-saver.save(sess, checkpoint_dir + checkpoint_file)
+test_xs, test_ys = mnist.test.next_batch(10000)
+test_accuracy = sess.run(accuracy, feed_dict={x: test_xs, y_: test_ys})	
+print "test accuracy : ", test_accuracy
 
 sess.close()

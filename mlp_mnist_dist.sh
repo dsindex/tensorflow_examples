@@ -107,6 +107,8 @@ if (( VERBOSE_MODE > 1 )); then
 	revert_calmness
 fi
 
+rm -rf ${CDIR}/train_logs
+
 nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=localhost:2222,localhost:2223 \
 		   --worker_hosts=localhost:2224,localhost:2225 \
 		   --job_name=ps --task_index=0 &

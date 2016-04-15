@@ -85,7 +85,7 @@ def main(_):
 	  		# perform *synchronous* training.
 			batch_xs, batch_ys = mnist.train.next_batch(50)
 			if step % 100 == 0:
-				print "step : ", step, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys})	
+				print "job : %s/%s" % (FLAGS.job_name,FLAGS.task_index), "step : ", step, ",training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys})	
 	  		_, step = sess.run([train_op, global_step], feed_dict={x: batch_xs, y_: batch_ys})
 
 if __name__ == "__main__":

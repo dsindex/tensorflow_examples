@@ -26,9 +26,6 @@ W_out = weight_variable([512, 10])
 b_out = bias_variable([10])
 y = tf.nn.softmax(tf.matmul(h1, W_out) + b_out)
 
-# training
-cost = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y)))
-train_step = tf.train.GradientDescentOptimizer(0.01).minimize(cost)
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
@@ -36,9 +33,10 @@ init = tf.initialize_all_variables()
 sess = tf.Session()
 sess.run(init)
 saver = tf.train.Saver() # save all variables
-checkpoint_dir = './train_logs'
+checkpoint_dir = './train_logs/'
 ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
 if ckpt and ckpt.model_checkpoint_path :
+	print ckpt.model_checkpoint_path
 	saver.restore(sess, ckpt.model_checkpoint_path)
 else :
 	sys.stderr.write("no checkpoint found" + '\n')

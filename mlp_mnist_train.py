@@ -32,11 +32,11 @@ train_step = tf.train.GradientDescentOptimizer(0.01).minimize(cost)
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 NUM_THREADS = 5
-sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS,inter_op_parallelism_threads=NUM_THREADS,log_device_placement=True))
+sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS,inter_op_parallelism_threads=NUM_THREADS,log_device_placement=False))
 init = tf.initialize_all_variables()
 sess.run(init)
 saver = tf.train.Saver() # save all variables
-checkpoint_dir = './train_logs'
+checkpoint_dir = './train_logs/'
 checkpoint_file = 'mlp.ckpt'
 for i in range(20000):
 	batch_xs, batch_ys = mnist.train.next_batch(50)

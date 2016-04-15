@@ -78,6 +78,20 @@ test.py
 * distributed
   mlp_mnist_dist.sh
   mlp_mnist_dist.py
+  # worker0 log
+  job : worker/0 step :  0 ,training accuracy : 0.9
+  job : worker/0 step :  100 ,training accuracy : 0.9
+  job : worker/0 step :  200 ,training accuracy : 0.86
+  job : worker/0 step :  300 ,training accuracy : 0.9
+  ...
+  # worker1 log
+  job : worker/1 step :  0 ,training accuracy : 0.12
+  job : worker/1 step :  0 ,training accuracy : 0.14
+  job : worker/1 step :  300 ,training accuracy : 0.82
+  job : worker/1 step :  500 ,training accuracy : 0.92
+  job : worker/1 step :  600 ,training accuracy : 0.94
+  ....
+
 ```
 - MNIST convolutaional neural network test code
 ```

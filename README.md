@@ -72,12 +72,12 @@ test.py
 - MNIST multi-layer perceptron test code
 ```
 * code
-  mlp_mnist.py
+  mlp_mnist_train.py
+  mlp_mnist_inference.py
 * accuracy : around 98%
 * distributed
   mlp_mnist_dist.sh
   mlp_mnist_dist.py
-  mlp_mnist_dist_inference.py
 ```
 - MNIST convolutaional neural network test code
 ```

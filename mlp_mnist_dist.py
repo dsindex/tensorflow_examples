@@ -88,6 +88,9 @@ def main(_):
 				print "job : %s/%s" % (FLAGS.job_name,FLAGS.task_index), "step : ", step, ",training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys})	
 	  		_, step = sess.run([train_op, global_step], feed_dict={x: batch_xs, y_: batch_ys})
 
+		# save model
+		saver.save(sess, "/root/tensorflow/train_logs/mlp.ckpt")
+
 if __name__ == "__main__":
   tf.app.run()
 

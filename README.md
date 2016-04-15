@@ -43,7 +43,8 @@ test.py
   softmax_regression_iris_train.py
   softmax_regression_iris_inference.py
   train_iris.txt
-* training accuracy : around 96%
+  # training accuracy : around 96%
+
 * for other traning data :
   - convert training data format into the format like train_iris.txt
   - modify softmax_regression3_train.py
@@ -56,14 +57,16 @@ test.py
 ```
 * code
   mlp_iris.py
-* training accuracy : around 96%
+  # training accuracy : around 96%
 ```
 - MNIST softmax regression test code
 ```
 * download MNIST data from http://yann.lecun.com/exdb/mnist/
+
 * code
   softmax_regression_mnist.py
-* accuracy : around 92%
+  # accuracy : around 92%
+
 * softmax regression 
   = multinomial logistic regression 
   = maximum entropy classifier
@@ -72,18 +75,27 @@ test.py
 - MNIST multi-layer perceptron test code
 ```
 * code
+  # train
   mlp_mnist_train.py
+
+  # inference
   mlp_mnist_inference.py
-* accuracy : around 98%
-* distributed
-  mlp_mnist_dist.sh
+
+  # accuracy : around 98%
+
+* distributed version
   mlp_mnist_dist.py
+
+  # parameter servers and workers
+  ./mlp_mnist_dist.sh
+
   # worker0 log
   job : worker/0 step :  0 ,training accuracy : 0.9
   job : worker/0 step :  100 ,training accuracy : 0.9
   job : worker/0 step :  200 ,training accuracy : 0.86
   job : worker/0 step :  300 ,training accuracy : 0.9
   ...
+
   # worker1 log
   job : worker/1 step :  0 ,training accuracy : 0.12
   job : worker/1 step :  0 ,training accuracy : 0.14
@@ -92,23 +104,29 @@ test.py
   job : worker/1 step :  600 ,training accuracy : 0.94
   ....
 
+  # inference 
+  python mlp_mnist_inference.py
+
+  # accuracy :  0.9604
 ```
 - MNIST convolutaional neural network test code
 ```
 * code
   conv_mnist.py
-* accuracy : around 99%
+  # accuracy : around 99%
+
 * using CPU, training is very slow!
 ```
 - MNIST LSTM(recurrent neural network) test code
 ```
 * code
   lstm_mnist.py
-* accuracy : around 97%
+  # accuracy : around 97%
 ```
 - CHAR-RNN
 ```
 * sequence to sequence learning
+
 * code
 
 ```

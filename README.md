@@ -136,7 +136,9 @@ test.py
   * build word2vec model
     word2vec.py
   * construct sample sentences with its sentiment(good, bad, normal)
+
   * build neural net, for example, multi-layer perceptron
+
   * compare classifier using word features itself and word2vec features
   ```
   ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)

@@ -127,8 +127,8 @@ test.py
 ```
 * sequence to sequence learning
 
-* code
-
+* char-rnn
+  https://github.com/sherjilozair/char-rnn-tensorflow
 ```
 - we are now going to use word2vec for modeling sentiment classification problem
   - steps

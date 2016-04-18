@@ -146,5 +146,8 @@ test.py
   - [RNN](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
   - [LSTM](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
   - [Word2Vec](https://github.com/dsindex/blog/wiki/%5BWord2Vec%5D-Neural-Language-Model-and-Word2Vec)
-  - [tensorspark](https://github.com/adatao/tensorspark?files=1) 
-  - [distributed tensorflow](https://www.tensorflow.org/versions/r0.8/how_tos/distributed/index.html)
+  - tensorflow
+    - [tensorflow mnist inference test using web interface](https://github.com/sugyan/tensorflow-mnist)
+    - [distributed tensorflow](https://www.tensorflow.org/versions/r0.8/how_tos/distributed/index.html)
+    - [tensorboard]( https://www.tensorflow.org/versions/master/how_tos/summaries_and_tensorboard/index.html)
+    - [tensorspark](https://github.com/adatao/tensorspark?files=1) 

@@ -152,4 +152,12 @@ test.py
     - [tensorflow mnist inference test using web interface](https://github.com/sugyan/tensorflow-mnist)
     - [distributed tensorflow](https://www.tensorflow.org/versions/r0.8/how_tos/distributed/index.html)
     - [tensorboard]( https://www.tensorflow.org/versions/master/how_tos/summaries_and_tensorboard/index.html)
-    - [tensorspark](https://github.com/adatao/tensorspark?files=1) 
+    - [tensorspark](https://github.com/adatao/tensorspark?files=1)
+  - gpu check
+    - command
+	```
+    `lspci` 
+	`nvidia-smi`
+	`cat /proc/driver/nvidia/gpus/0/information`
+	`cat /proc/driver/nvidia/gpus/1/information`
+	```

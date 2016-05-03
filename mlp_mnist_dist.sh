@@ -118,10 +118,10 @@ nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=localhost:2222,localhost:2223 
 
 python ${CDIR}/mlp_mnist_dist.py --ps_hosts=localhost:2222,localhost:2223 \
 		   --worker_hosts=localhost:2224,localhost:2225 \
-		   --job_name=worker --task_index=0
+		   --job_name=worker --task_index=0 &
 python ${CDIR}/mlp_mnist_dist.py --ps_hosts=localhost:2222,localhost:2223 \
 		   --worker_hosts=localhost:2224,localhost:2225 \
-		   --job_name=worker --task_index=1
+		   --job_name=worker --task_index=1 &
 
 close_fd
 

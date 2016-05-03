@@ -37,6 +37,12 @@ test.py
     softmax_regression1.py
     train_softmax.txt
   ```
+  - RNN
+  ```
+  * recurrent neural network
+  * code
+    rnn1.py  
+  ```
 - IRIS softmax regression test code
 ```
 * code

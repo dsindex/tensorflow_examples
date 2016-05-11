@@ -1,6 +1,7 @@
 #!./bin/env python
 
-# simple character based RNN for 'hello world'
+# simple character based RNN 
+# ex) input 'hello worl', output 'ello world'
 
 import tensorflow as tf
 from tensorflow.models.rnn import rnn, rnn_cell
@@ -13,6 +14,10 @@ def one_hot(x_data, padding=0) :
 	return b
 
 sentence = 'hello world'
+#sentence = 'this is a simple RNN'
+sentence_size = len(sentence)
+print 'sentence = ' + sentence
+print 'sentence size = %d' % sentence_size
 
 # build dictionary
 char_rdic = []
@@ -52,9 +57,9 @@ print sample
 '''
 
 # config
-rnn_size = char_vocab_size     # output layer dimension  : 8
-time_step_size = 10            # input layer time step
-batch_size = 1                 # 1 sample
+rnn_size = char_vocab_size         # output layer dimension  : 8
+time_step_size = sentence_size - 1 # input layer time step : 10
+batch_size = 1                     # 1 sample
 
 # RNN model
 '''
@@ -76,17 +81,24 @@ print 'outputs : '
 print outputs
 
 # logits: list of 2D Tensors of shape [batch_size x num_decoder_symbols]
+#         combine splits into (10,8)
 # ex) [ [0.1,0.3,0.3,0.3,..], [0.2,0.3,0.4,0.1,..],...,[0.5,0.3,0.1,0.1,..], [0.7,0.2,0.1,0.0,..] ]
-#     10 x 8 predicted output sequence
-logits = tf.reshape(tf.concat(1, outputs), [-1, rnn_size]) 
+#     (10, 8) predicted output sequence
+logits = tf.reshape(tf.concat(1, outputs), [-1, rnn_size])
+print 'logits : '
+print logits
 # targets: list of 1D batch-sized int32 Tensors of the same length as logits
 # ex) [1, 2, 2, 3, 4, 5, 3, 6, 2, 7]
-#     1 x 10 expected output sequence
+#     (10, 1) expected output sequence
 targets = tf.reshape(sample[1:], [-1])
+print 'targets : '
+print targets
 # weights: list of 1D batch-sized float-Tensors of the same length as logits
 # ex) [1, 1, ..., 1, 1]
-#     1 x 10 weight
+#     (10, 1) weights
 weights = tf.ones([time_step_size * batch_size]) 
+print 'weights : '
+print weights
 
 loss = tf.nn.seq2seq.sequence_loss_by_example([logits], [targets], [weights])
 cost = tf.reduce_sum(loss) / batch_size 

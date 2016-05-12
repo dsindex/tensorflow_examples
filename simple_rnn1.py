@@ -50,7 +50,7 @@ def build_targets(sentence, n_steps, char_dic) :
 	    (10,) expected output sequence
 	'''
 
-def rnn_model(rnn_size, n_steps, x_data, batch_size) :
+def rnn_model(rnn_size, n_steps, x_data) :
 	'''
 	outputs  (1,8) (1,8) ... (1,8) (1,8)
 	cell     BasicRNNCell(8)
@@ -59,10 +59,10 @@ def rnn_model(rnn_size, n_steps, x_data, batch_size) :
 	'''
 	cell = rnn_cell.BasicRNNCell(rnn_size)
 	print 'rnn_size = %d' % rnn_size
-	istate = tf.zeros([batch_size, cell.state_size])  # (1,8)
+	istate = tf.zeros([1, cell.state_size])  # (1,8)
 	print 'istate : '
 	print istate
-	X_split = tf.split(0, n_steps, x_data)            # (10,8) -> (1,8),(1,8),...,(1,8),(1,8)
+	X_split = tf.split(0, n_steps, x_data)   # (10,8) -> (1,8),(1,8),...,(1,8),(1,8)
 	print 'X_split : '
 	print X_split
 	outputs, state = rnn.rnn(cell, X_split, istate)
@@ -89,21 +89,29 @@ batch_size = 1                                     # 1 sample
 x_data = build_x_data(sentence, n_steps, char_dic)
 
 # RNN model
-outputs, state = rnn_model(rnn_size, n_steps, x_data, batch_size)
+outputs, state = rnn_model(rnn_size, n_steps, x_data)
 
 # build a targets
+'''
 # targets : list of 1D batch-sized int32 Tensors of the same length as logits
+            ex) [1, 2, 2, 3, 4, 5, 3, 6, 2, 7]
+            (10,) expected output sequence
+'''
 targets = build_targets(sentence, n_steps, char_dic)
 
+'''
 # logits: list of 2D Tensors of shape [batch_size x num_decoder_symbols]
-#         combine splits into (10,8)
-# ex) [ [0.1,0.3,0.3,0.3,..], [0.2,0.3,0.4,0.1,..],...,[0.5,0.3,0.1,0.1,..], [0.7,0.2,0.1,0.0,..] ]
-#     (10, 8) predicted output sequence
+          combine (1, 8) splits into (10,8)
+          ex) [ [0.1,0.3,0.3,0.3,..], [0.2,0.3,0.4,0.1,..],...,[0.5,0.3,0.1,0.1,..], [0.7,0.2,0.1,0.0,..] ]
+          (10, 8) predicted output sequence
+'''
 logits = tf.reshape(tf.concat(1, outputs), [-1, rnn_size])
 
+'''
 # weights: list of 1D batch-sized float-Tensors of the same length as logits
-# ex) [1, 1, ..., 1, 1]
-#     (10,) weights
+           ex) [1, 1, ..., 1, 1]
+           (10,) weights
+'''
 weights = tf.ones([n_steps * batch_size]) 
 
 loss = tf.nn.seq2seq.sequence_loss_by_example([logits], [targets], [weights])

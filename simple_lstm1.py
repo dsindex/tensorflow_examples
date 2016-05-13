@@ -24,6 +24,9 @@ def one_hot(i, vocab_size) :
 	return [ 1 if j == i else 0 for j in xrange(vocab_size) ]
 
 def next_batch(sentences, n_steps, char_dic, batch_size) :
+	'''
+	for testing
+	'''
 	batch_xs = []
 	batch_ys = []
 	count = 0

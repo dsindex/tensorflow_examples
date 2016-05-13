@@ -46,18 +46,27 @@ biases = {
 }
 
 def RNN(_X, _istate, _weights, _biases):
-	# input shape: (batch_size, n_steps, n_input)
-	_X = tf.transpose(_X, [1, 0, 2])  # permute n_steps and batch_size
+	# input _X shape: (batch_size, n_steps, n_input)
+	# switch n_steps and batch_size, (n_steps, batch_size, n_input)
+	_X = tf.transpose(_X, [1, 0, 2])
 	# Reshape to prepare input to hidden activation
-	_X = tf.reshape(_X, [-1, n_input]) # (n_steps*batch_size, n_input)
+	# (n_steps*batch_size, n_input) = (?, n_input)
+	_X = tf.reshape(_X, [-1, n_input])
 	# Linear activation
-	_X = tf.matmul(_X, _weights['hidden']) + _biases['hidden']
+	_X = tf.matmul(_X, _weights['hidden']) + _biases['hidden'] # (?, n_hidden)
 
 	# Define a lstm cell with tensorflow
 	lstm_cell = rnn_cell.BasicLSTMCell(n_hidden, forget_bias=1.0)
 	# Split data because rnn cell needs a list of inputs for the RNN inner loop
-	_X = tf.split(0, n_steps, _X) # n_steps * (batch_size, n_hidden)
-
+	_X = tf.split(0, n_steps, _X) # n_steps splits each of which contains (?, n_hidden)
+	'''
+	ex)
+	i  split0  split1  split2 .... split27
+    0  (128)     ...               (128)
+    1  (128)     ...               (128)
+	...
+    2  (128)     ...               (128)
+	'''
 	# Get lstm cell output
 	outputs, states = rnn.rnn(lstm_cell, _X, initial_state=_istate)
 
@@ -73,19 +82,22 @@ optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost) #
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 NUM_THREADS = 5
-sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS,inter_op_parallelism_threads=NUM_THREADS,log_device_placement=True))
+sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS,inter_op_parallelism_threads=NUM_THREADS,log_device_placement=False))
 init = tf.initialize_all_variables()
 sess.run(init)
 
 step = 1
 while step * batch_size < training_iters :
+	# [batch_size, 28 x 28], [batch_size, 10]
 	batch_xs, batch_ys = mnist.train.next_batch(batch_size)
 	# [batch_size, 28 x 28] -> [batch_size, n_steps, n_input]
 	batch_xs = batch_xs.reshape((batch_size, n_steps, n_input))
-	sess.run(optimizer, feed_dict={x: batch_xs, y_: batch_ys, istate: np.zeros((batch_size, 2*n_hidden))})
+	# [batch_size, 2*128] 
+	c_istate = np.zeros((batch_size, 2*n_hidden))
+	sess.run(optimizer, feed_dict={x: batch_xs, y_: batch_ys, istate: c_istate})
 	if step % display_step == 0 :
-		acc = sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys, istate: np.zeros((batch_size, 2*n_hidden))})
-		loss = sess.run(cost, feed_dict={x: batch_xs, y_: batch_ys, istate: np.zeros((batch_size, 2*n_hidden))})
+		acc = sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys, istate: c_istate})
+		loss = sess.run(cost, feed_dict={x: batch_xs, y_: batch_ys, istate: c_istate})
 		print "step : " + str(step*batch_size) + ", Minibatch Loss= " + "{:.6f}".format(loss) + ", Training Accuracy= " + "{:.5f}".format(acc)
 	step += 1
 

@@ -41,7 +41,8 @@ test.py
   ```
   * recurrent neural network
   * code
-    simple_rnn1.py  
+    simple_rnn1.py
+	simple_lstm.py
   ```
 - IRIS softmax regression test code
 ```

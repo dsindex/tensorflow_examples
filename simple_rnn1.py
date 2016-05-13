@@ -98,7 +98,7 @@ outputs, state = rnn_model(rnn_size, n_steps, x_data)
             (10,) expected output sequence
 '''
 targets = build_targets(sentence, n_steps, char_dic)
-
+print targets
 '''
 # logits: list of 2D Tensors of shape [batch_size x num_decoder_symbols]
           combine (1, 8) splits into (10,8)
@@ -106,6 +106,7 @@ targets = build_targets(sentence, n_steps, char_dic)
           (10, 8) predicted output sequence
 '''
 logits = tf.reshape(tf.concat(1, outputs), [-1, rnn_size])
+print logits
 
 '''
 # weights: list of 1D batch-sized float-Tensors of the same length as logits

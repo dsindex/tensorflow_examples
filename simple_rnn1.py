@@ -7,11 +7,8 @@ import tensorflow as tf
 from tensorflow.models.rnn import rnn, rnn_cell
 import numpy as np
 
-def one_hot(x_data, padding=0) :
-	a = np.array(x_data, dtype=int)
-	b = np.zeros((a.size, a.max()+1+padding))
-	b[np.arange(a.size),a] = 1
-	return b
+def one_hot(i, vocab_size) :
+	return [ 1 if j == i else 0 for j in xrange(vocab_size) ]
 
 def build_dictionary(sentence) :
 	char_rdic = []
@@ -23,9 +20,8 @@ def build_dictionary(sentence) :
 def build_x_data(sentence, n_steps, char_dic) :
 	x_data = sentence[0:n_steps]                   # ['h','e','l','l','o',' ','w','o','r','l']
 	vocab_size = len(char_dic)
-	padding = vocab_size - len(set(x_data))
-	x_data = [ [char_dic[c] for c in x_data] ]     # [ [0, 1, 2, 2,...] ]
-	x_data = one_hot(x_data, padding)
+	x_data = [char_dic[c] for c in x_data]         # [0, 1, 2, 2,...]
+	x_data = [one_hot(i, vocab_size) for i in x_data]
 	x_data = np.array(x_data, dtype='f')           # 10 x 8 matrix
 	return x_data
 	'''

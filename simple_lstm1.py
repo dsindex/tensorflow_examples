@@ -97,10 +97,10 @@ def RNN(_X, _istate, _weights, _biases):
 	'''
 	ex)
 	i  split0  split1  split2 .... split6
-	0  (27)     ...                 (27)
-	1  (27)     ...                 (27)
+	0  (8)     ...                 (8)
+	1  (8)     ...                 (8)
 	...
-	m  (27)     ...                 (27)
+	m  (8)     ...                 (8)
 	'''
 	# Get lstm cell output
 	outputs, states = rnn.rnn(lstm_cell, _X, initial_state=_istate)

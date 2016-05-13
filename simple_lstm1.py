@@ -41,18 +41,19 @@ def next_batch(sentences, n_steps, char_dic, batch_size) :
 	batch_ys = np.array(batch_ys, dtype='int32')
 	return batch_xs, batch_ys
 
-'''
-sentences = ['abcdefg*', 
-		     'hijklmn*',
-			 'opqrstu*',
-			 'vwxyz***']
+
+sentences = ['abcdefg', 
+		     'hijklmn',
+			 'opqrstu',
+			 'vwxyz**']
 '''
 sentences = ['hello world']
+'''
 
 # config
 learning_rate = 0.01
 training_iters = 500
-batch_size = 1
+batch_size = 4
 
 n_steps = len(sentences[0]) - 1 # time stpes
 char_rdic, char_dic = build_dictionary(sentences)

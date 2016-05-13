@@ -23,14 +23,11 @@ def build_dictionary(sentences) :
 def one_hot(i, vocab_size) :
 	return [ 1 if j == i else 0 for j in xrange(vocab_size) ]
 
-def next_batch(sentences, n_steps, char_dic, batch_size) :
-	'''
-	for testing
-	'''
+def next_batch(sentences, begin, batch_size, n_steps, char_dic) :
 	batch_xs = []
 	batch_ys = []
 	count = 0
-	for sentence in sentences :
+	for sentence in sentences[begin:] :
 		x_data = sentence[0:n_steps]
 		vocab_size = len(char_dic)
 		x_data = [char_dic[c] for c in x_data]
@@ -42,21 +39,25 @@ def next_batch(sentences, n_steps, char_dic, batch_size) :
 		if count == batch_size : break
 	batch_xs = np.array(batch_xs, dtype='f')
 	batch_ys = np.array(batch_ys, dtype='int32')
-	return batch_xs, batch_ys
+	return batch_xs, batch_ys, begin+count
 
 
 sentences = ['abcdefg', 
 		     'hijklmn',
 			 'opqrstu',
-			 'vwxyz**']
+			 'vwxyz**',
+			 'abcdefg',  # test
+			 'opqrstu']  # test
+batch_size = 4
+
 '''
 sentences = ['hello world']
+batch_size = 1
 '''
 
 # config
 learning_rate = 0.01
 training_iters = 500
-batch_size = 4
 
 n_steps = len(sentences[0]) - 1 # time stpes
 char_rdic, char_dic = build_dictionary(sentences)
@@ -113,10 +114,10 @@ def RNN(_X, _istate, _weights, _biases):
 
 # training
 y = RNN(x, istate, weights, biases)
+
 logits = tf.reshape(tf.concat(1, y), [-1, n_classes])
 targets = y_
 seq_weights = tf.ones([n_steps * batch_size])
-
 loss = tf.nn.seq2seq.sequence_loss_by_example([logits], [targets], [seq_weights])
 cost = tf.reduce_sum(loss) / batch_size 
 optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
@@ -126,7 +127,8 @@ sess = tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_THREADS
 init = tf.initialize_all_variables()
 sess.run(init)
 
-batch_xs, batch_ys = next_batch(sentences, n_steps, char_dic, batch_size)
+begin = 0
+batch_xs, batch_ys, begin = next_batch(sentences, begin, batch_size, n_steps, char_dic)
 print 'batch_xs.shape : ' + str(batch_xs.shape)
 print 'batch_xs : '
 print batch_xs
@@ -138,7 +140,16 @@ while step < training_iters :
 	c_istate = np.zeros((batch_size, 2*n_hidden))
 	feed={x: batch_xs, y_: batch_ys, istate: c_istate}
 	sess.run(optimizer, feed_dict=feed)
-	result = sess.run(tf.arg_max(logits, 1), feed_dict=feed)
-	print result, [char_rdic[t] for t in result]
+	if step % 10 == 0 : 
+		print 'step : %s' % step + ',' + 'cost : %s' % sess.run(cost, feed_dict=feed)
 	step += 1
+
+# inference
+batch_size = 2
+batch_xs, batch_ys, begin = next_batch(sentences, begin, batch_size, n_steps, char_dic)
+c_istate = np.zeros((batch_size, 2*n_hidden))
+feed={x: batch_xs, y_: batch_ys, istate: c_istate}
+result = sess.run(tf.arg_max(logits, 1), feed_dict=feed)
+print result, [char_rdic[t] for t in result]
+
 

@@ -3,19 +3,16 @@ tensorflow
 
 #### description
   - test code for tensorflow
-
 #### [tensorflow](https://www.tensorflow.org/)
   - how to install in OS X
     - install docker
     - [tensorflow docker installation](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#docker-installation)
 	- [installation using pip](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#pip-installation)
     - [installation from source](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#installing-from-sources)
-
 #### simple test code
 ```
 test.py
 ```
-
 #### [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
   - linear regression
   ```
@@ -63,14 +60,12 @@ test.py
   - restore model and test inference
   - these steps are basic usage what you are familar with
 ```
-
 #### IRIS multi-layer perceptron test code
 ```
 * code
   mlp_iris.py
   # training accuracy : around 96%
 ```
-
 #### MNIST softmax regression test code
 ```
 * download MNIST data from http://yann.lecun.com/exdb/mnist/
@@ -84,7 +79,6 @@ test.py
   = maximum entropy classifier
   = neural net without hidden layer
 ```
-
 #### MNIST multi-layer perceptron test code
 ```
 * code
@@ -122,7 +116,6 @@ test.py
 
   # accuracy :  0.9604
 ```
-
 #### MNIST convolutaional neural network test code
 ```
 * code
@@ -131,14 +124,12 @@ test.py
 
 * using CPU, training is very slow!
 ```
-
 #### MNIST LSTM(recurrent neural network) test code
 ```
 * code
   lstm_mnist.py
   # accuracy : around 97%
 ```
-
 #### RNN
   - simple lstm
   ```
@@ -152,7 +143,6 @@ test.py
   ```
   * see https://github.com/sherjilozair/char-rnn-tensorflow
   ```
-
 #### word2vec
 ```
 * build word2vec model
@@ -163,7 +153,6 @@ test.py
   test_word2vec.py
 ```
 ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
-
 #### references
   - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
   - [Neural Network and Deep Learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)

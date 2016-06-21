@@ -42,7 +42,6 @@ test.py
   * recurrent neural network
   * code
     simple_rnn1.py
-	simple_lstm.py
   ```
 - IRIS softmax regression test code
 ```
@@ -130,25 +129,29 @@ test.py
   lstm_mnist.py
   # accuracy : around 97%
 ```
-- CHAR-RNN
-```
-* sequence to sequence learning
-
-* char-rnn
-  https://github.com/sherjilozair/char-rnn-tensorflow
-```
-- we are now going to use word2vec for modeling sentiment classification problem
-  - steps
+- RNN
+  - simple lstm
   ```
-  * build word2vec model
-    word2vec.py
-  * construct sample sentences with its sentiment(good, bad, normal)
-
-  * build neural net, for example, multi-layer perceptron
-
-  * compare classifier using word features itself and word2vec features
+  simple_lstm.py
   ```
-  ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
+  - segmentation(auto-spacing) using lstm
+  ```
+  * see https://github.com/dsindex/segm-lstm
+  ```
+  - char-rnn
+  ```
+  * see https://github.com/sherjilozair/char-rnn-tensorflow
+  ```
+- word2vec
+```
+* build word2vec model
+  word2vec.py
+* more optimized model
+  word2vec_optimized.py
+* test word2vec model
+  test_word2vec.py
+```
+![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
 - references
   - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
   - [Neural Network and Deep Learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)

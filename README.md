@@ -1,19 +1,19 @@
 tensorflow
 ===
 
-#### description
+- description
   - test code for tensorflow
-#### [tensorflow](https://www.tensorflow.org/)
+- [tensorflow](https://www.tensorflow.org/)
   - how to install in OS X
     - install docker
     - [tensorflow docker installation](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#docker-installation)
 	- [installation using pip](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#pip-installation)
     - [installation from source](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#installing-from-sources)
-#### simple test code
+- simple test code
 ```
 test.py
 ```
-#### [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
+- [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
   - linear regression
   ```
   * predict real value
@@ -44,7 +44,7 @@ test.py
   * code
     simple_rnn1.py
   ```
-#### IRIS softmax regression test code
+- IRIS softmax regression test code
 ```
 * code
   softmax_regression_iris_train.py
@@ -60,13 +60,13 @@ test.py
   - restore model and test inference
   - these steps are basic usage what you are familar with
 ```
-#### IRIS multi-layer perceptron test code
+- IRIS multi-layer perceptron test code
 ```
 * code
   mlp_iris.py
   # training accuracy : around 96%
 ```
-#### MNIST softmax regression test code
+- MNIST softmax regression test code
 ```
 * download MNIST data from http://yann.lecun.com/exdb/mnist/
 
@@ -79,7 +79,7 @@ test.py
   = maximum entropy classifier
   = neural net without hidden layer
 ```
-#### MNIST multi-layer perceptron test code
+- MNIST multi-layer perceptron test code
 ```
 * code
   # train
@@ -116,7 +116,7 @@ test.py
 
   # accuracy :  0.9604
 ```
-#### MNIST convolutaional neural network test code
+- MNIST convolutaional neural network test code
 ```
 * code
   conv_mnist.py
@@ -124,13 +124,13 @@ test.py
 
 * using CPU, training is very slow!
 ```
-#### MNIST LSTM(recurrent neural network) test code
+- MNIST LSTM(recurrent neural network) test code
 ```
 * code
   lstm_mnist.py
   # accuracy : around 97%
 ```
-#### RNN
+- RNN
   - simple lstm
   ```
   simple_lstm.py
@@ -143,7 +143,7 @@ test.py
   ```
   * see https://github.com/sherjilozair/char-rnn-tensorflow
   ```
-#### word2vec
+- word2vec
 ```
 * build word2vec model
   word2vec.py
@@ -153,7 +153,7 @@ test.py
   test_word2vec.py
 ```
 ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
-#### references
+- references
   - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
   - [Neural Network and Deep Learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)
   - [RNN](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)

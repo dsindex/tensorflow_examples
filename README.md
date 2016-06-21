@@ -47,7 +47,6 @@ test.py
   * code
     simple_rnn1.py
   ```
-
 #### IRIS softmax regression test code
 ```
 * code

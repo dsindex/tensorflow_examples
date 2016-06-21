@@ -1,14 +1,17 @@
-# tensorflow
+tensorflow
+===
 
-- description
+#### description
   - test code for tensorflow
-- [tensorflow](https://www.tensorflow.org/)
+
+#### [tensorflow](https://www.tensorflow.org/)
   - how to install in OS X
     - install docker
     - [tensorflow docker installation](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#docker-installation)
 	- [installation using pip](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#pip-installation)
     - [installation from source](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#installing-from-sources)
-- simple test code
+
+#### simple test code
 ```
 test.py
 ```

@@ -4,6 +4,7 @@ tensorflow
 - description
   - test code for tensorflow
 - [tensorflow](https://www.tensorflow.org/)
+  - version : 0.8
   - how to install in OS X
     - install docker
     - [tensorflow docker installation](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#docker-installation)

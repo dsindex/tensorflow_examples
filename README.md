@@ -11,12 +11,12 @@ tensorflow
 	- [installation using pip](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#pip-installation)
     - [installation from source](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#installing-from-sources)
 - simple test code
-```
+```shell
 test.py
 ```
 - [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
   - linear regression
-  ```
+  ```shell
   * predict real value
   * code
     linear_regression1.py
@@ -26,27 +26,27 @@ test.py
     train_linear.txt
   ```
   - logistic regression
-  ```
+  ```shell
   * binary classification 0 or 1
   * code
     logistic_regression1.py
     train_logistic.txt
   ```
   - softmax regression
-  ```
+  ```shell
   * multinomial (logistic) classification
   * code
     softmax_regression1.py
     train_softmax.txt
   ```
   - RNN
-  ```
+  ```shell
   * recurrent neural network
   * code
     simple_rnn1.py
   ```
 - IRIS softmax regression test code
-```
+```shell
 * code
   softmax_regression_iris_train.py
   softmax_regression_iris_inference.py
@@ -62,13 +62,13 @@ test.py
   - these steps are basic usage what you are familar with
 ```
 - IRIS multi-layer perceptron test code
-```
+```shell
 * code
   mlp_iris.py
   # training accuracy : around 96%
 ```
 - MNIST softmax regression test code
-```
+```shell
 * download MNIST data from http://yann.lecun.com/exdb/mnist/
 
 * code
@@ -81,7 +81,7 @@ test.py
   = neural net without hidden layer
 ```
 - MNIST multi-layer perceptron test code
-```
+```shell
 * code
   # train
   mlp_mnist_train.py
@@ -118,7 +118,7 @@ test.py
   # accuracy :  0.9604
 ```
 - MNIST convolutaional neural network test code
-```
+```shell
 * code
   conv_mnist.py
   # accuracy : around 99%
@@ -126,26 +126,26 @@ test.py
 * using CPU, training is very slow!
 ```
 - MNIST LSTM(recurrent neural network) test code
-```
+```shell
 * code
   lstm_mnist.py
   # accuracy : around 97%
 ```
 - RNN
   - simple lstm
-  ```
+  ```shell
   simple_lstm.py
   ```
   - segmentation(auto-spacing) using lstm
-  ```
+  ```shell
   * see https://github.com/dsindex/segm-lstm
   ```
   - char-rnn
-  ```
+  ```shell
   * see https://github.com/sherjilozair/char-rnn-tensorflow
   ```
 - word2vec
-```
+```shell
 * build word2vec model
   word2vec.py
 * more optimized model
@@ -167,9 +167,9 @@ test.py
 	- [tensorflow C++ image recognition demo](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/label_image)
   - gpu check
     - command
-	```
-    `lspci` 
-	`nvidia-smi`
-	`cat /proc/driver/nvidia/gpus/0/information`
-	`cat /proc/driver/nvidia/gpus/1/information`
+	```shell
+    $ lspci
+	$ nvidia-smi
+	$ cat /proc/driver/nvidia/gpus/0/information
+	$ cat /proc/driver/nvidia/gpus/1/information
 	```

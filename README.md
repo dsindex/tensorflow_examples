@@ -165,7 +165,7 @@ $ bazel build //tensorflow_serving/example:mlp_mnist_inference
 
 # how to generate 'mlp_mnist_inference_pb2.py'?
 $ which grpc_python_plugin
-# if this returns nothing, gRPC was not properly installed.
+# if this returns nothing, gRPC was not properly installed. see https://github.com/tensorflow/serving/issues/42
 $ cd tensorflow_serving/example
 $ protoc -I ./  --python_out=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_python_plugin` ./mlp_mnist_inference.proto
 $ cd -

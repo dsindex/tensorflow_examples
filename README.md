@@ -139,15 +139,15 @@ $ cp ../serving_BUILD tensorflow_serving/example/BUILD
 $ bazel build //tensorflow_serving/example:mlp_mnist_export
 $ bazel build //tensorflow_serving/example:mlp_mnist_inference_proto
 $ bazel build //tensorflow_serving/example:mlp_mnist_inference
-# how to generate 'mlp_mnist_inference_pb2.py'? we need to install protoc version 3
-$ curl -OL https://github.com/google/protobuf/releases/download/v3.0.0-beta-4/protobuf-python-3.0.0-beta-4.tar.gz
-# follow instruction https://github.com/google/protobuf/tree/master/python
-$ protoc --version
-libprotoc 3.0.0
-$ protoc --proto_path=tensorflow_serving/example --python_out=tensorflow_serving/example tensorflow_serving/example/mlp_mnist_inference.proto
+
+# how to generate 'mlp_mnist_inference_pb2.py'?
+$ which grpc_python_plugin
+# if this returns nothing, gRPC was not properly installed. see https://github.com/tensorflow/serving/issues/42
+$ cd tensorflow_serving/example
+$ protoc -I ./  --python_out=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_python_plugin` ./mlp_mnist_inference.proto
+$ cd -
 $ ls tensorflow_serving/example/mlp_mnist_*
 mlp_mnist_client.py         mlp_mnist_export.py         mlp_mnist_inference.cc      mlp_mnist_inference.proto   mlp_mnist_inference_pb2.py
-# FIXME : mlp_mnist_inference_pb2.py is not property generated ;;
 $ bazel build //tensorflow_serving/example:mlp_mnist_client
 
 $ bazel-bin/tensorflow_serving/example/mlp_mnist_export --input_path=../MNIST_data --export_path=export

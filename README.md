@@ -137,11 +137,21 @@ $ cp ../mlp_mnist_client.py tensorflow_serving/example
 $ cp ../serving_BUILD tensorflow_serving/example/BUILD
 
 $ bazel build //tensorflow_serving/example:mlp_mnist_export
+$ bazel build //tensorflow_serving/example:mlp_mnist_inference_proto
 $ bazel build //tensorflow_serving/example:mlp_mnist_inference
+# how to generate 'mlp_mnist_inference_pb2.py'? we need to install protoc version 3
+$ curl -OL https://github.com/google/protobuf/releases/download/v3.0.0-beta-4/protobuf-python-3.0.0-beta-4.tar.gz
+# follow instruction https://github.com/google/protobuf/tree/master/python
+$ protoc --version
+libprotoc 3.0.0
+$ protoc --proto_path=tensorflow_serving/example --python_out=tensorflow_serving/example tensorflow_serving/example/mlp_mnist_inference.proto
+$ ls tensorflow_serving/example/mlp_mnist_*
+mlp_mnist_client.py         mlp_mnist_export.py         mlp_mnist_inference.cc      mlp_mnist_inference.proto   mlp_mnist_inference_pb2.py
+# FIXME : mlp_mnist_inference_pb2.py is not property generated ;;
 $ bazel build //tensorflow_serving/example:mlp_mnist_client
 
 $ bazel-bin/tensorflow_serving/example/mlp_mnist_export --input_path=../MNIST_data --export_path=export
-$ bazel-bin/tensorflow_serving/example/mlp_mnist_inference --port=9000 ./export
+$ nohup bazel-bin/tensorflow_serving/example/mlp_mnist_inference --port=9000 ./export/00000001 &
 $ bazel-bin/tensorflow_serving/example/mlp_mnist_client --num_tests=100 --server=localhost:9000
 ```
 - if you want to run `mlp_mnist_export.py` without bazel support

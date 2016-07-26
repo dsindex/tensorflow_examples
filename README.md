@@ -122,8 +122,9 @@ tensorflow
 
 ### tensorflow serving
 - [setup tensorflow serving](https://tensorflow.github.io/serving/setup)
-- [serving basic](https://tensorflow.github.io/serving/serving_basic)
-- [test mlp_mnist_export.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_export.py)
+  - install serving current directory
+  - [serving basic](https://tensorflow.github.io/serving/serving_basic)
+- [mlp_mnist_export.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_export.py)
 ```shell
 $ cd serving
 $ ls serving/
@@ -143,6 +144,16 @@ py_binary(
 )
 $ bazel build //tensorflow_serving/example:mlp_mnist_export
 $ bazel-bin/tensorflow_serving/example/mlp_mnist_export --input_path=../MNIST_data --export_path=export
+```
+- if you want to run `mlp_mnist_export.py` without bazel support
+```shell
+# find out python_path
+# vi bazel-bin/tensorflow_serving/example/mlp_mnist_export
+  new_env['PYTHONPATH'] = python_path
+  print python_path
+$ export PYTHONPATH='......'
+$ cd ..
+$ python mlp_mnist_export.py --input_path=./MNIST_data --export_path=export
 ```
 
 ### references

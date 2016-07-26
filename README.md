@@ -165,6 +165,9 @@ test.py
     - [distributed tensorflow](https://www.tensorflow.org/versions/r0.8/how_tos/distributed/index.html)
     - [tensorboard]( https://www.tensorflow.org/versions/master/how_tos/summaries_and_tensorboard/index.html)
 	- [tensorflow C++ image recognition demo](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/label_image)
+	- tensorflow serving
+	  - [setup](https://tensorflow.github.io/serving/setup)
+	  - [serving basic](https://tensorflow.github.io/serving/serving_basic)
   - gpu check
     - command
 	```shell

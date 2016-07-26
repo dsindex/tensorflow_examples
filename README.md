@@ -1,7 +1,7 @@
 tensorflow
 ===
 
-#### description
+### description
 - test code for tensorflow
 - [tensorflow](https://www.tensorflow.org/)
   - version : 0.8
@@ -11,10 +11,10 @@ tensorflow
 	- [installation using pip](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#pip-installation)
     - [installation from source](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html#installing-from-sources)
 
-#### simple test code
+### simple test code
 - [test.py](https://github.com/dsindex/tensorflow/blob/master/test.py)
 
-#### [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
+### [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
 - linear regression
   - predict real value
   - code
@@ -38,7 +38,7 @@ tensorflow
   - code
     - [simple_rnn1.py](https://github.com/dsindex/tensorflow/blob/master/simple_rnn1.py)
 
-#### IRIS softmax regression test code
+### IRIS softmax regression test code
 - code
   - [softmax_regression_iris_train.py](https://github.com/dsindex/tensorflow/blob/master/softmax_regression_iris_train.py)
   - [softmax_regression_iris_inference.py](https://github.com/dsindex/tensorflow/blob/master/softmax_regression_iris_inference.py)
@@ -54,12 +54,12 @@ tensorflow
   - these steps are basic usage what you are familar with
   ```
 
-#### IRIS multi-layer perceptron test code
+### IRIS multi-layer perceptron test code
 - code
   - [mlp_iris.py](https://github.com/dsindex/tensorflow/blob/master/mlp_iris.py)
   - # training accuracy : around 96%
 
-#### MNIST softmax regression test code
+### MNIST softmax regression test code
 - download MNIST data from http://yann.lecun.com/exdb/mnist/
 - code
   - [softmax_regression_mnist.py](https://github.com/dsindex/tensorflow/blob/master/softmax_regression_mnist.py)
@@ -69,7 +69,7 @@ tensorflow
   - maximum entropy classifier
   - neural net without hidden layer
 
-#### MNIST multi-layer perceptron test code
+### MNIST multi-layer perceptron test code
 - code
   - [mlp_mnist_train.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_train.py)
   - [mlp_mnist_inference.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_inference.py)
@@ -97,33 +97,33 @@ tensorflow
   ```
   - # accuracy :  0.9604
 
-#### MNIST convolutaional neural network test code
+### MNIST convolutaional neural network test code
 - code
   - [conv_mnist.py](https://github.com/dsindex/tensorflow/blob/master/conv_mnist.py)
   - # accuracy : around 99%
 
-#### MNIST LSTM(recurrent neural network) test code
+### MNIST LSTM(recurrent neural network) test code
 - code
   - [lstm_mnist.py](https://github.com/dsindex/tensorflow/blob/master/lstm_mnist.py)
   - # accuracy : around 97%
 
-#### RNN
+### RNN
 - code
   - [simple lstm](https://github.com/dsindex/tensorflow/blob/master/simple_lstm.py)
 - [segmentation(auto-spacing) using lstm](https://github.com/dsindex/segm-lstm)
 - [char-rnn](https://github.com/sherjilozair/char-rnn-tensorflow)
   
-#### word2vec
+### word2vec
 - code
   - [build word2vec model](https://github.com/dsindex/tensorflow/blob/master/word2vec.py)
   - [more optimized model](https://github.com/dsindex/tensorflow/blob/master/word2vec_optimized.py)
   - [test and dump word2vec model](https://github.com/dsindex/tensorflow/blob/master/test_word2vec.py)
   ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
 
-#### tensorflow serving
+### tensorflow serving
 
 
-#### references
+### references
 - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
 - [Neural Network and Deep Learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)
 - [RNN](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)

@@ -129,21 +129,20 @@ tensorflow
 $ cd serving
 $ ls serving/
 ... bazel-bin  bazel-genfiles  bazel-out  bazel-serving  bazel-testlogs  tensorflow  tensorflow_serving  tf_models  tools
-$ cp ../mlp_mnist_export.py tensorflow_serving/example/
-$ vi tensorflow_serving/example/BUILD
-py_binary(
-    name = "mlp_mnist_export",
-    srcs = [
-        "mlp_mnist_export.py",
-    ],
-    deps = [
-	    "@org_tensorflow//tensorflow/examples/tutorials/mnist:input_data",
-        "@org_tensorflow//tensorflow:tensorflow_py",
-        "@org_tensorflow//tensorflow/contrib/session_bundle:exporter",
-    ],
-)
+
+$ cp ../mlp_mnist_export.py tensorflow_serving/example
+$ cp ../mlp_mnist_interence.proto tensorflow_serving/example
+$ cp ../mlp_mnist_inference.cc tensorflow_serving/example
+$ cp ../mlp_mnist_client.py tensorflow_serving/example
+$ cp ../serving_BUILD tensorflow_serving/example/BUILD
+
 $ bazel build //tensorflow_serving/example:mlp_mnist_export
+$ bazel build //tensorflow_serving/example:mlp_mnist_inference
+$ bazel build //tensorflow_serving/example:mlp_mnist_client
+
 $ bazel-bin/tensorflow_serving/example/mlp_mnist_export --input_path=../MNIST_data --export_path=export
+$ bazel-bin/tensorflow_serving/example/mlp_mnist_inference --port=9000 ./export
+$ bazel-bin/tensorflow_serving/example/mlp_mnist_client --num_tests=100 --server=localhost:9000
 ```
 - if you want to run `mlp_mnist_export.py` without bazel support
 ```shell

@@ -78,7 +78,7 @@ tensorflow
   - [mlp_mnist_dist.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_dist.py)
   - training using parameter servers and workers
   ```shell
-  ./mlp_mnist_dist.sh
+  $ ./mlp_mnist_dist.sh -v -v
 
   # worker0 log
   job : worker/0 step :  0 ,training accuracy : 0.9
@@ -121,7 +121,27 @@ tensorflow
   ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
 
 ### tensorflow serving
-
+- [setup tensorflow serving](https://tensorflow.github.io/serving/setup)
+```shell
+$ cd serving
+$ ls serving/
+... bazel-bin  bazel-genfiles  bazel-out  bazel-serving  bazel-testlogs  tensorflow  tensorflow_serving  tf_models  tools
+$ cp ../mlp_mnist_export.py tensorflow_serving/example/
+$ vi tensorflow_serving/example/BUILD
+py_binary(
+    name = "mlp_mnist_export",
+    srcs = [
+        "mlp_mnist_export.py",
+    ],
+    deps = [
+	    "@org_tensorflow//tensorflow/examples/tutorials/mnist:input_data",
+        "@org_tensorflow//tensorflow:tensorflow_py",
+        "@org_tensorflow//tensorflow/contrib/session_bundle:exporter",
+    ],
+)
+$ bazel build //tensorflow_serving/example:mlp_mnist_export
+$ bazel-bin/tensorflow_serving/example/mlp_mnist_export --input_path=../MNIST_data --export_path=export
+```
 
 ### references
 - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)

@@ -109,22 +109,45 @@ tensorflow
 
 ### RNN
 - code
-  - [simple lstm](https://github.com/dsindex/tensorflow/blob/master/simple_lstm.py)
+  - [simple lstm.py](https://github.com/dsindex/tensorflow/blob/master/simple_lstm.py)
 - [segmentation(auto-spacing) using lstm](https://github.com/dsindex/segm-lstm)
 - [char-rnn](https://github.com/sherjilozair/char-rnn-tensorflow)
   
 ### word2vec
 - code
-  - [build word2vec model](https://github.com/dsindex/tensorflow/blob/master/word2vec.py)
-  - [more optimized model](https://github.com/dsindex/tensorflow/blob/master/word2vec_optimized.py)
-  - [test and dump word2vec model](https://github.com/dsindex/tensorflow/blob/master/test_word2vec.py)
+  - [build word2vec model, word2vec.py](https://github.com/dsindex/tensorflow/blob/master/word2vec.py)
+  - [more optimized model, word2vec_optimized.py](https://github.com/dsindex/tensorflow/blob/master/word2vec_optimized.py)
+  - [test and dump word2vec model, test_word2vec.py](https://github.com/dsindex/tensorflow/blob/master/test_word2vec.py)
   ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
 
 ### tensorflow serving
 - [setup tensorflow serving](https://tensorflow.github.io/serving/setup)
   - install serving current directory
-  - [serving basic](https://tensorflow.github.io/serving/serving_basic)
+  ```shell
+  git clone --recurse-submodules https://github.com/tensorflow/serving
+  ```
+  - if you have trouble on installing gRPC, see http://dchua.com/2016/04/08/installing-grpc,-protobuf-and-its-dependencies-for-python-development/
+  ```shell
+  sudo find /usr/lib -name "*protobuf*" -delete
+  git clone -b $(curl -L http://grpc.io/release) https://github.com/grpc/grpc
+  cd grpc/
+  git submodule update --init
+  cd third_party/protobuf
+  sudo apt-get install autoconf
+  ./autogen.sh
+  ./configure; make; sudo make install
+  cd python
+  python setup.py build; python setup.py test; sudo python setup.py install
+  cd -
+  make; sudo make install
+  which grpc_python_plugin
+  ```
+- [serving basic](https://tensorflow.github.io/serving/serving_basic)
 - [mlp_mnist_export.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_export.py)
+- [mlp_mnist_inference.proto](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_inference.proto)
+- [mlp_mnist_inference.cc](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_inference.cc)
+- [mlp_mnist_client](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_client)
+- [serving_BUILD](https://github.com/dsindex/tensorflow/blob/master/serving_BUILD)
 ```shell
 $ cd serving
 $ ls serving/
@@ -142,7 +165,7 @@ $ bazel build //tensorflow_serving/example:mlp_mnist_inference
 
 # how to generate 'mlp_mnist_inference_pb2.py'?
 $ which grpc_python_plugin
-# if this returns nothing, gRPC was not properly installed. see https://github.com/tensorflow/serving/issues/42
+# if this returns nothing, gRPC was not properly installed.
 $ cd tensorflow_serving/example
 $ protoc -I ./  --python_out=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_python_plugin` ./mlp_mnist_inference.proto
 $ cd -
@@ -153,6 +176,14 @@ $ bazel build //tensorflow_serving/example:mlp_mnist_client
 $ bazel-bin/tensorflow_serving/example/mlp_mnist_export --input_path=../MNIST_data --export_path=export
 $ nohup bazel-bin/tensorflow_serving/example/mlp_mnist_inference --port=9000 ./export/00000001 &
 $ bazel-bin/tensorflow_serving/example/mlp_mnist_client --num_tests=100 --server=localhost:9000
+D0726 22:10:39.746550057   17959 ev_posix.c:101]             Using polling engine: poll
+Extracting /tmp/train-images-idx3-ubyte.gz
+Extracting /tmp/train-labels-idx1-ubyte.gz
+Extracting /tmp/t10k-images-idx3-ubyte.gz
+Extracting /tmp/t10k-labels-idx1-ubyte.gz
+....................................................................................................
+Inference error rate: 1.0%
+E0726 22:10:41.380252923   18062 chttp2_transport.c:1810]    close_transport: {"created":"@1469538641.380233200","description":"FD shutdown","file":"src/core/lib/iomgr/ev_poll_posix.c","file_line":427}
 ```
 - if you want to run `mlp_mnist_export.py` without bazel support
 ```shell

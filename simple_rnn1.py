@@ -4,7 +4,6 @@
 # ex) input 'hello worl', output 'ello world'
 
 import tensorflow as tf
-from tensorflow.models.rnn import rnn, rnn_cell
 import numpy as np
 
 def one_hot(i, vocab_size) :
@@ -53,7 +52,7 @@ def rnn_model(rnn_size, n_steps, x_data) :
 	state    (1,8)
 	X_split  (1,8) (1,8) ... (1,8) (1,8)
 	'''
-	cell = rnn_cell.BasicRNNCell(rnn_size)
+	cell = tf.nn.rnn_cell.BasicRNNCell(rnn_size)
 	print 'rnn_size = %d' % rnn_size
 	istate = tf.zeros([1, cell.state_size])  # (1,8)
 	print 'istate : '
@@ -61,7 +60,7 @@ def rnn_model(rnn_size, n_steps, x_data) :
 	X_split = tf.split(0, n_steps, x_data)   # (10,8) -> (1,8),(1,8),...,(1,8),(1,8)
 	print 'X_split : '
 	print X_split
-	outputs, state = rnn.rnn(cell, X_split, istate)
+	outputs, state = tf.nn.rnn(cell, X_split, istate)
 	print 'outputs : '
 	print outputs
 	return outputs, state

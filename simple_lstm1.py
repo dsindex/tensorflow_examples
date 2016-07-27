@@ -1,7 +1,6 @@
 #!/bin/env python
 
 import tensorflow as tf
-from tensorflow.models.rnn import rnn, rnn_cell
 import numpy as np
 
 def weight_variable(shape):
@@ -91,7 +90,7 @@ def RNN(_X, _istate, _weights, _biases):
 	_X = tf.matmul(_X, _weights['hidden']) + _biases['hidden'] # (?, n_hidden)
 
 	# Define a lstm cell with tensorflow
-	lstm_cell = rnn_cell.BasicLSTMCell(n_hidden, forget_bias=1.0)
+	lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(n_hidden, forget_bias=1.0)
 	# Split data because rnn cell needs a list of inputs for the RNN inner loop
 	_X = tf.split(0, n_steps, _X) # n_steps splits each of which contains (?, n_hidden)
 	'''
@@ -103,7 +102,7 @@ def RNN(_X, _istate, _weights, _biases):
 	m  (8)     ...                 (8)
 	'''
 	# Get lstm cell output
-	outputs, states = rnn.rnn(lstm_cell, _X, initial_state=_istate)
+	outputs, states = tf.nn.rnn(lstm_cell, _X, initial_state=_istate)
 	final_outputs = []
 	for output in outputs :
 		# Linear activation

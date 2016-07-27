@@ -93,6 +93,9 @@ def main(_):
 		# save model
 		saver.save(sess, FLAGS.model_path + "/mlp.ckpt")
 
+		# Ask for all the services to stop.
+		sv.stop()
+
 if __name__ == "__main__":
   tf.app.run()
 

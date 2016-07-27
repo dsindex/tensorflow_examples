@@ -21,6 +21,7 @@ tf.app.flags.DEFINE_string("worker_hosts", "", "Comma-separated list of hostname
 # Flags for defining the tf.train.Server
 tf.app.flags.DEFINE_string("job_name", "", "One of 'ps', 'worker'")
 tf.app.flags.DEFINE_integer("task_index", 0, "Index of task within the job")
+tf.app.flags.DEFINE_string("model_path", "/root/tensorflow/train_logs", "path to save model")
 FLAGS = tf.app.flags.FLAGS
 
 def main(_):
@@ -32,7 +33,8 @@ def main(_):
 	print cluster._cluster_spec
 
 	# Create and start a server for the local task.
-	server = tf.train.Server(cluster.as_cluster_def(), job_name=FLAGS.job_name, task_index=FLAGS.task_index)
+	#server = tf.train.Server(cluster.as_cluster_def(), job_name=FLAGS.job_name, task_index=FLAGS.task_index)
+	server = tf.train.Server(cluster, job_name=FLAGS.job_name, task_index=FLAGS.task_index)
 
 	if FLAGS.job_name == "ps" :
 		server.join()
@@ -62,7 +64,7 @@ def main(_):
 
 		# Create a "supervisor", which oversees the training process.
 		sv = tf.train.Supervisor(is_chief=(FLAGS.task_index == 0),
-								 logdir="/root/tensorflow/train_logs",
+								 logdir=FLAGS.model_path,
 								 init_op=init_op,
 								 summary_op=summary_op,
 								 saver=saver,
@@ -79,7 +81,7 @@ def main(_):
 		# Loop until the supervisor shuts down (or 1000000 steps have completed).
 		mnist = input_data.read_data_sets("./MNIST_data/", one_hot=True)
 		step = 0
-		while not sv.should_stop() and step < 20000:
+		while not sv.should_stop() and step < 10000:
 	  		# Run a training step asynchronously.
 	  		# See `tf.train.SyncReplicasOptimizer` for additional details on how to
 	  		# perform *synchronous* training.
@@ -89,7 +91,7 @@ def main(_):
 	  		_, step = sess.run([train_op, global_step], feed_dict={x: batch_xs, y_: batch_ys})
 
 		# save model
-		saver.save(sess, "/root/tensorflow/train_logs/mlp.ckpt")
+		saver.save(sess, FLAGS.model_path + "/mlp.ckpt")
 
 if __name__ == "__main__":
   tf.app.run()

@@ -107,21 +107,36 @@ if (( VERBOSE_MODE > 1 )); then
 	revert_calmness
 fi
 
-rm -rf ${CDIR}/train_logs
+IP=localhost
+PORT_1=2221
+PORT_2=2222
+PORT_3=2223
+PORT_4=2224
 
-nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=localhost:2222,localhost:2223 \
-		   --worker_hosts=localhost:2224,localhost:2225 \
-		   --job_name=ps --task_index=0 &
-nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=localhost:2222,localhost:2223 \
-		   --worker_hosts=localhost:2224,localhost:2225 \
-		   --job_name=ps --task_index=1 &
+model_path=${CDIR}/train_logs
+rm -rf ${model_path}
 
-python ${CDIR}/mlp_mnist_dist.py --ps_hosts=localhost:2222,localhost:2223 \
-		   --worker_hosts=localhost:2224,localhost:2225 \
-		   --job_name=worker --task_index=0 &
-python ${CDIR}/mlp_mnist_dist.py --ps_hosts=localhost:2222,localhost:2223 \
-		   --worker_hosts=localhost:2224,localhost:2225 \
-		   --job_name=worker --task_index=1 &
+function run_ps {
+	nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
+			   --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
+			   --job_name=ps --task_index=0 &
+	nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
+			   --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
+			   --job_name=ps --task_index=1 &
+}
+run_ps
+
+function run_worker {
+	python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
+			   --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
+			   --job_name=worker --task_index=0 \
+			   --model_path=${model_path} &
+	python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
+			   --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
+			   --job_name=worker --task_index=1 \
+			   --model_path=${model_path} &
+}
+#run_worker
 
 close_fd
 

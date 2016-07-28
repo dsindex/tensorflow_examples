@@ -96,6 +96,7 @@ tensorflow
   ....
   ```
   - # accuracy :  0.9604
+  - if you have a trouble like 'failed to connect...', [read](http://stackoverflow.com/questions/37729746/failed-to-run-tensorflow-distributed-mnist-test)
 
 ### MNIST convolutaional neural network test code
 - code
@@ -185,7 +186,7 @@ Extracting /tmp/t10k-labels-idx1-ubyte.gz
 Inference error rate: 1.0%
 E0726 22:10:41.380252923   18062 chttp2_transport.c:1810]    close_transport: {"created":"@1469538641.380233200","description":"FD shutdown","file":"src/core/lib/iomgr/ev_poll_posix.c","file_line":427}
 ```
-- if you want to run `mlp_mnist_export.py` without bazel support
+- if you want to run `mlp_mnist_export.py` directly
 ```shell
 # find out python_path
 # vi bazel-bin/tensorflow_serving/example/mlp_mnist_export
@@ -194,6 +195,7 @@ E0726 22:10:41.380252923   18062 chttp2_transport.c:1810]    close_transport: {"
 $ export PYTHONPATH='......'
 $ cd ..
 $ python mlp_mnist_export.py --input_path=./MNIST_data --export_path=export
+# but still you need to run bazel for mlp_mnist_export.
 ```
 
 ### references
@@ -214,4 +216,5 @@ $ python mlp_mnist_export.py --input_path=./MNIST_data --export_path=export
   $ nvidia-smi
   $ cat /proc/driver/nvidia/gpus/0/information
   $ cat /proc/driver/nvidia/gpus/1/information
+  $ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
   ```

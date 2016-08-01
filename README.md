@@ -121,7 +121,12 @@ tensorflow
   ```shell
   $ python translate.py --data_dir=parallel_corpus --train_dir=trans_model --size=256 --num_layers=2 --steps_per_checkpoint=50
   ```
-  
+  - you can utilize this code not only translation but also sequential tagging.
+    - references
+	  - [ATTENTION AND MEMORY IN DEEP LEARNING AND NLP](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/#more-548)
+      - [Grammar as a Foreign Language](https://arxiv.org/pdf/1412.7449v3.pdf)
+ 	  - [NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE](http://arxiv.org/pdf/1409.0473v7.pdf)
+
 ### word2vec
 - code
   - [build word2vec model, word2vec.py](https://github.com/dsindex/tensorflow/blob/master/word2vec.py)

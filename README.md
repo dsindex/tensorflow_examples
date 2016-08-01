@@ -113,6 +113,14 @@ tensorflow
   - [simple_lstm1.py](https://github.com/dsindex/tensorflow/blob/master/simple_lstm1.py)
 - [segmentation(auto-spacing) using lstm](https://github.com/dsindex/segm-lstm)
 - [char-rnn](https://github.com/sherjilozair/char-rnn-tensorflow)
+
+### Translation using RNN with attention
+- [seq2seq tutorial](https://www.tensorflow.org/versions/r0.10/tutorials/seq2seq/index.html)
+- code
+  - [translate.py](https://github.com/dsindex/tensorflow/blob/master/translate.py)
+  ```shell
+  $ python translate.py --data_dir=parallel_corpus --train_dir=trans_model --size=256 --num_layers=2 --steps_per_checkpoint=50
+  ```
   
 ### word2vec
 - code
@@ -125,23 +133,23 @@ tensorflow
 - [setup tensorflow serving](https://tensorflow.github.io/serving/setup)
   - install serving current directory
   ```shell
-  git clone --recurse-submodules https://github.com/tensorflow/serving
+  $ git clone --recurse-submodules https://github.com/tensorflow/serving
   ```
   - if you have trouble on installing gRPC, see http://dchua.com/2016/04/08/installing-grpc,-protobuf-and-its-dependencies-for-python-development/
   ```shell
-  sudo find /usr/lib -name "*protobuf*" -delete
-  git clone -b $(curl -L http://grpc.io/release) https://github.com/grpc/grpc
-  cd grpc/
-  git submodule update --init
-  cd third_party/protobuf
-  sudo apt-get install autoconf
-  ./autogen.sh
-  ./configure; make; sudo make install
-  cd python
-  python setup.py build; python setup.py test; sudo python setup.py install
-  cd -
-  make; sudo make install
-  which grpc_python_plugin
+  $ sudo find /usr/lib -name "*protobuf*" -delete
+  $ git clone -b $(curl -L http://grpc.io/release) https://github.com/grpc/grpc
+  $ cd grpc/
+  $ git submodule update --init
+  $ cd third_party/protobuf
+  $ sudo apt-get install autoconf
+  $ ./autogen.sh
+  $ ./configure; make; sudo make install
+  $ cd python
+  $ python setup.py build; python setup.py test; sudo python setup.py install
+  $ cd -
+  $ make; sudo make install
+  $ which grpc_python_plugin
   ```
 - [serving basic](https://tensorflow.github.io/serving/serving_basic)
 - [mlp_mnist_export.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_export.py)

@@ -203,6 +203,7 @@ $ python mlp_mnist_export.py --input_path=./MNIST_data --export_path=export
 - code
   - [translate.py](https://github.com/dsindex/tensorflow/blob/master/translate.py)
   ```shell
+  $ mkdir trans_model
   $ python translate.py --data_dir=parallel_corpus --train_dir=trans_model --size=256 --num_layers=2 --steps_per_checkpoint=50
   ```
   - you can utilize this code not only translation but also sequential tagging.

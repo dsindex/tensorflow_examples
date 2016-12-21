@@ -220,6 +220,7 @@ $ python mlp_mnist_export.py --input_path=./MNIST_data --export_path=export
 - [LSTM](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 - [Word2Vec](https://github.com/dsindex/blog/wiki/%5BWord2Vec%5D-Neural-Language-Model-and-Word2Vec)
 - tensorflow
+  - [tensorflow tutorial](https://github.com/sherrym/tf-tutorial/blob/master/DeepLearningSchool2016.pdf)
   - [tensorflow mnist inference test using web interface](https://github.com/sugyan/tensorflow-mnist)
   - [distributed tensorflow](https://www.tensorflow.org/versions/r0.8/how_tos/distributed/index.html)
   - [tensorboard]( https://www.tensorflow.org/versions/master/how_tos/summaries_and_tensorboard/index.html)

@@ -14,7 +14,7 @@ print X
 
 # The second example is of length 6
 X[1,6:] = 0
-X_lengths = [10, 6]
+X_lengths = [10, 6] # first 10, second 6
 print X
 
 cell = tf.nn.rnn_cell.LSTMCell(num_units=64, state_is_tuple=True)

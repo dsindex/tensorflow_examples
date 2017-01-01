@@ -10,13 +10,17 @@ tf.reset_default_graph()
 
 # Create input data
 X = np.random.randn(2, 10, 8)
+print "[X]"
 print X
 
 # The second example is of length 6
 X[1,6:] = 0
 X_lengths = [10, 6] # first 10, second 6
+print "[Modified X]"
 print X
 
+# num_units => hidden_state(64), cell_state(64)
+# last_states = tuple(hidden_state, cell_state)
 cell = tf.nn.rnn_cell.LSTMCell(num_units=64, state_is_tuple=True)
 
 outputs, last_states = tf.nn.dynamic_rnn(
@@ -30,7 +34,11 @@ result = tf.contrib.learn.run_n(
     n=1,
     feed_dict=None)
 
+print "[last_states]"
+print result[0]['last_states']
+
 assert result[0]["outputs"].shape == (2, 10, 64)
+print "[outputs]"
 print(result[0]["outputs"])
 
 # Outputs for the second example past past length 6 should be 0

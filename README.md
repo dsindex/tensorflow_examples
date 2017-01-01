@@ -213,6 +213,10 @@ $ python mlp_mnist_export.py --input_path=./MNIST_data --export_path=export
       - [Grammar as a Foreign Language](https://arxiv.org/pdf/1412.7449v3.pdf)
  	  - [NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE](http://arxiv.org/pdf/1409.0473v7.pdf)
 
+## data preprocessing(tf.SequenceExample)
+- [RNNS IN TENSORFLOW, A PRACTICAL GUIDE AND UNDOCUMENTED FEATURES](http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/)
+  - [in korean](https://tgjeon.github.io/post/rnns-in-tensorflow/)
+
 ### references
 - [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
 - [Neural Network and Deep Learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)

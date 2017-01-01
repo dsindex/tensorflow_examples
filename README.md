@@ -111,6 +111,7 @@ tensorflow
 ### RNN
 - code
   - [simple_lstm1.py](https://github.com/dsindex/tensorflow/blob/master/simple_lstm1.py)
+  - [dynamic_rnn.py](https://github.com/dsindex/tensorflow/blob/master/dynamic_rnn.py)
 - [segmentation(auto-spacing) using lstm](https://github.com/dsindex/segm-lstm)
 - [char-rnn](https://github.com/sherjilozair/char-rnn-tensorflow)
 

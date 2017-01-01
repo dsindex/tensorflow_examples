@@ -68,32 +68,20 @@ x = tf.placeholder("float", [None, n_steps, n_input])
 y_ = tf.placeholder("int32", [None, n_steps])
 
 # LSTM layer
-# 2 x n_hidden = state_size = (hidden state + cell state)
-istate = tf.placeholder("float", [None, 2*n_hidden])
 weights = {
-	'hidden' : weight_variable([n_input, n_hidden]),
 	'out' : weight_variable([n_hidden, n_classes])
 }
 biases = {
-	'hidden' : bias_variable([n_hidden]),
 	'out': bias_variable([n_classes])
 }
 
-def RNN(_X, _istate, _weights, _biases):
+def RNN(_X, _weights, _biases):
 	# input _X shape: (batch_size, n_steps, n_input)
-	# switch n_steps and batch_size, (n_steps, batch_size, n_input)
-	_X = tf.transpose(_X, [1, 0, 2])
-	# Reshape to prepare input to hidden activation
-	# (n_steps*batch_size, n_input) = (?, n_input)
-	_X = tf.reshape(_X, [-1, n_input])
-	# Linear activation
-	_X = tf.matmul(_X, _weights['hidden']) + _biases['hidden'] # (?, n_hidden) + constant(n_hidden,) = (?,n_hidden)
-
 	# Define a lstm cell with tensorflow
-	lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(n_hidden, forget_bias=1.0, state_is_tuple=False)
+	lstm_cell = tf.nn.rnn_cell.LSTMCell(n_hidden, forget_bias=1.0, state_is_tuple=True)
 	# Split data because rnn cell needs a list of inputs for the RNN inner loop
 	# n_steps splits each of which contains (?, n_hidden)
-	_X = tf.split(0, n_steps, _X)
+	#_X = tf.split(0, n_steps, _X)
 	'''
 	ex)
 	i  split0  split1  split2 .... split5
@@ -103,19 +91,27 @@ def RNN(_X, _istate, _weights, _biases):
 	m  (8)     ...                 (8)
 	'''
 	# Get lstm cell output
-	outputs, states = tf.nn.rnn(lstm_cell, _X, initial_state=_istate)
-	final_outputs = []
-	for output in outputs :
-		# Linear activation
-		final_output = tf.matmul(output, _weights['out']) + _biases['out'] # (?, n_classes)
-		final_outputs.append(final_output)
+	_X_lengths = [6, 6, 6, 6]
+	outputs, states = tf.nn.dynamic_rnn(
+				cell=lstm_cell,
+				dtype=tf.float32,
+				sequence_length=_X_lengths,
+				inputs=_X)
+
+	# outputs == (?,n_steps,n_hidden)
+	# _weights['out'] = (n_hidden, n_classes)
+	print outputs
+	outputs = tf.reshape(outputs, [-1, n_hidden])
+	final_outputs = tf.matmul(outputs, _weights['out']) + _biases['out'] # (?, n_classes)
+	print final_outputs
 	return final_outputs
 
-
 # training
-y = RNN(x, istate, weights, biases)
+y = RNN(x, weights, biases)
 
-logits = tf.reshape(tf.concat(1, y), [-1, n_classes])
+#logits = tf.reshape(tf.concat(1, y), [-1, n_classes])
+logits = tf.reshape(y, [-1, n_classes])
+print logits
 targets = y_
 seq_weights = tf.ones([n_steps * batch_size])
 loss = tf.nn.seq2seq.sequence_loss_by_example([logits], [targets], [seq_weights])

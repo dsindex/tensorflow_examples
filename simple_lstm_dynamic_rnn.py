@@ -25,9 +25,11 @@ def one_hot(i, vocab_size) :
 def next_batch(sentences, begin, batch_size, n_steps, char_dic) :
 	batch_xs = []
 	batch_ys = []
+	batch_xls = []
 	count = 0
 	for sentence in sentences[begin:] :
 		x_data = sentence[0:n_steps]
+		batch_xls.append(len(x_data))
 		vocab_size = len(char_dic)
 		x_data = [char_dic[c] for c in x_data]
 		x_data = [one_hot(i, vocab_size) for i in x_data]
@@ -38,21 +40,16 @@ def next_batch(sentences, begin, batch_size, n_steps, char_dic) :
 		if count == batch_size : break
 	batch_xs = np.array(batch_xs, dtype='f')
 	batch_ys = np.array(batch_ys, dtype='int32')
-	return batch_xs, batch_ys, begin+count
+	batch_xls = np.array(batch_xls, dtype='int32')
+	return batch_xs, batch_ys, batch_xls, begin+count
 
 
-sentences = ['abcdefg', 
+sentences = ['abcdefg',  # train
 	     'hijklmn',
 	     'opqrstu',
 	     'vwxyz**',
 	     'abcdefg',  # test
-	     'opqrstu']  # test
-batch_size = 4
-
-'''
-sentences = ['hello world']
-batch_size = 1
-'''
+	     'opqrstu']
 
 # config
 learning_rate = 0.01
@@ -75,43 +72,30 @@ biases = {
 	'out': bias_variable([n_classes])
 }
 
-def RNN(_X, _weights, _biases):
+def RNN(_x, _x_lengths, _weights, _biases):
 	# input _X shape: (batch_size, n_steps, n_input)
 	# Define a lstm cell with tensorflow
 	lstm_cell = tf.nn.rnn_cell.LSTMCell(n_hidden, forget_bias=1.0, state_is_tuple=True)
-	# Split data because rnn cell needs a list of inputs for the RNN inner loop
-	# n_steps splits each of which contains (?, n_hidden)
-	#_X = tf.split(0, n_steps, _X)
-	'''
-	ex)
-	i  split0  split1  split2 .... split5
-	0  (8)     ...                 (8)
-	1  (8)     ...                 (8)
-	...
-	m  (8)     ...                 (8)
-	'''
 	# Get lstm cell output
-	_X_lengths = [6, 6, 6, 6]
+	# to save computation time and ensure correctness, provide length list
 	outputs, states = tf.nn.dynamic_rnn(
 				cell=lstm_cell,
 				dtype=tf.float32,
-				sequence_length=_X_lengths,
-				inputs=_X)
+				sequence_length=_x_lengths,
+				inputs=_x)
 
 	# outputs == (?,n_steps,n_hidden)
 	# _weights['out'] = (n_hidden, n_classes)
-	print outputs
 	outputs = tf.reshape(outputs, [-1, n_hidden])
 	final_outputs = tf.matmul(outputs, _weights['out']) + _biases['out'] # (?, n_classes)
-	print final_outputs
 	return final_outputs
 
 # training
-y = RNN(x, weights, biases)
+batch_size = 4
+x_lengths = tf.placeholder("int32", [batch_size])
+y = RNN(x, x_lengths, weights, biases)
 
-#logits = tf.reshape(tf.concat(1, y), [-1, n_classes])
 logits = tf.reshape(y, [-1, n_classes])
-print logits
 targets = y_
 seq_weights = tf.ones([n_steps * batch_size])
 loss = tf.nn.seq2seq.sequence_loss_by_example([logits], [targets], [seq_weights])
@@ -124,7 +108,7 @@ init = tf.initialize_all_variables()
 sess.run(init)
 
 begin = 0
-batch_xs, batch_ys, begin = next_batch(sentences, begin, batch_size, n_steps, char_dic)
+batch_xs, batch_ys, batch_xls, begin = next_batch(sentences, begin, batch_size, n_steps, char_dic)
 print 'batch_xs.shape : ' + str(batch_xs.shape)
 print 'batch_xs : '
 print batch_xs
@@ -134,17 +118,24 @@ print batch_ys
 step = 1
 while step < training_iters :
 	c_istate = np.zeros((batch_size, 2*n_hidden))
-	feed={x: batch_xs, y_: batch_ys, istate: c_istate}
+	feed={x: batch_xs, y_: batch_ys, x_lengths: batch_xls}
 	sess.run(optimizer, feed_dict=feed)
 	if step % 10 == 0 : 
 		print 'step : %s' % step + ',' + 'cost : %s' % sess.run(cost, feed_dict=feed)
+		results = sess.run(tf.arg_max(logits, 1), feed_dict=feed)
+		results = np.reshape(results, (batch_size,-1))
+		for result in results :
+			print result, [char_rdic[t] for t in result]
 	step += 1
 
+import sys
+sys.exit(0)
+
 # inference
-batch_size = 2
-batch_xs, batch_ys, begin = next_batch(sentences, begin, batch_size, n_steps, char_dic)
+batch_size = 2  ### FIXME not equal to x_lengths dimention, how to solve it? split training and inference
+batch_xs, batch_ys, batch_xls, begin = next_batch(sentences, begin, batch_size, n_steps, char_dic)
 c_istate = np.zeros((batch_size, 2*n_hidden))
-feed={x: batch_xs, y_: batch_ys, istate: c_istate}
+feed={x: batch_xs, y_: batch_ys, x_lengths: batch_xls}
 result = sess.run(tf.arg_max(logits, 1), feed_dict=feed)
 print result, [char_rdic[t] for t in result]
 

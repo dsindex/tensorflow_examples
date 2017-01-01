@@ -25,7 +25,7 @@ display_step = 10
 
 n_input = 28   # row length of 28 x 28 image
 n_steps = 28   # 28 time steps
-n_hidden = 128 # hidden layer size
+n_hidden = 128 # hidden state size = lstm_size
 n_classes = 10 # output classes
 
 x = tf.placeholder("float", [None, n_steps, n_input])
@@ -33,7 +33,7 @@ y_ = tf.placeholder("float", [None, n_classes])
 
 # LSTM layer
 
-# 2 x n_hidden length (state & cell)
+# 2 x n_hidden = state_size = (hidden state + cell state)
 istate = tf.placeholder("float", [None, 2*n_hidden])
 weights = {
 	'hidden' : weight_variable([n_input, n_hidden]),
@@ -52,7 +52,7 @@ def RNN(_X, _istate, _weights, _biases):
 	# (n_steps*batch_size, n_input) = (?, n_input)
 	_X = tf.reshape(_X, [-1, n_input])
 	# Linear activation
-	_X = tf.matmul(_X, _weights['hidden']) + _biases['hidden'] # (?, n_hidden)
+	_X = tf.matmul(_X, _weights['hidden']) + _biases['hidden'] # (?, n_hidden)+scalar(n_hidden,)=(?,n_hidden)
 
 	# Define a lstm cell with tensorflow
 	lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(n_hidden, forget_bias=1.0, state_is_tuple=False)

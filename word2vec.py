@@ -176,7 +176,7 @@ num_steps = 100001
 
 with tf.Session(graph=graph) as session:
   # We must initialize all variables before we use them.
-  tf.initialize_all_variables().run()
+  tf.global_variables_initializer().run()
   print("Initialized")
 
   average_loss = 0

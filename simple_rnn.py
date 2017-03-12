@@ -52,15 +52,18 @@ def rnn_model(rnn_size, n_steps, x_data) :
 	state    (1,8)
 	X_split  (1,8) (1,8) ... (1,8) (1,8)
 	'''
-	cell = tf.nn.rnn_cell.BasicRNNCell(rnn_size)
+	#cell = tf.nn.rnn_cell.BasicRNNCell(rnn_size)
+	cell = tf.contrib.rnn.BasicRNNCell(rnn_size)
 	print 'rnn_size = %d' % rnn_size
 	istate = tf.zeros([1, cell.state_size])  # (1,8)
 	print 'istate : '
 	print istate
-	X_split = tf.split(0, n_steps, x_data)   # (10,8) -> (1,8),(1,8),...,(1,8),(1,8)
+	#X_split = tf.split(0, n_steps, x_data)   # (10,8) -> (1,8),(1,8),...,(1,8),(1,8)
+	X_split = tf.split(x_data, n_steps, 0)   # (10,8) -> (1,8),(1,8),...,(1,8),(1,8)
 	print 'X_split : '
 	print X_split
-	outputs, state = tf.nn.rnn(cell, X_split, istate)
+	#outputs, state = tf.nn.rnn(cell, X_split, istate)
+	outputs, state = tf.nn.dynamic_rnn(cell=cell, inputs=X_split)
 	print 'outputs : '
 	print outputs
 	return outputs, state
@@ -114,7 +117,7 @@ loss = tf.nn.seq2seq.sequence_loss_by_example([logits], [targets], [weights])
 cost = tf.reduce_sum(loss) / batch_size 
 train_op = tf.train.RMSPropOptimizer(0.01, 0.9).minimize(cost)
 
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 

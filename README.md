@@ -4,12 +4,7 @@ tensorflow
 ### description
 - test code for tensorflow
 - [tensorflow](https://www.tensorflow.org/)
-  - version : 0.11
-  - how to install in OS X
-    - install docker
-    - [tensorflow docker installation](https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html#docker-installation)
-	- [installation using pip](https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html#pip-installation)
-    - [installation from source](https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html#installing-from-sources)
+  - version : 1.0 (on-going)
 
 ### simple test code
 - [test.py](https://github.com/dsindex/tensorflow/blob/master/test.py)

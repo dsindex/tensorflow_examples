@@ -29,7 +29,7 @@ y = tf.nn.softmax(tf.matmul(h1, W_out) + b_out)
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 saver = tf.train.Saver() # save all variables

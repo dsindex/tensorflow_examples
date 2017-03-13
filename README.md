@@ -136,7 +136,7 @@ tensorflow
   $ ./configure; make; sudo make install
   $ cd python
   $ python setup.py build; python setup.py test; sudo python setup.py install
-  $ cd -
+  $ cd ../../..
   $ make; sudo make install
   $ which grpc_python_plugin
   ```

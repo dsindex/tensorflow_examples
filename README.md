@@ -133,6 +133,7 @@ tensorflow
   $ cd third_party/protobuf
   $ sudo apt-get install autoconf
   $ ./autogen.sh
+  # if you got an error related to 'libtool' on OS X, edit Makefile to use '/usr/bin/libtool' instead of '/usr/local/bin/libtool'
   $ ./configure; make; sudo make install
   $ cd python
   $ python setup.py build; python setup.py test; sudo python setup.py install

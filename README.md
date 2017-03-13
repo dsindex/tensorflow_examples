@@ -127,7 +127,7 @@ tensorflow
   - if you have trouble on installing gRPC, see http://dchua.com/2016/04/08/installing-grpc,-protobuf-and-its-dependencies-for-python-development/
   ```shell
   $ sudo find /usr/lib -name "*protobuf*" -delete
-  $ git clone -b $(curl -L http://grpc.io/release) https://github.com/grpc/grpc
+  $ git clone https://github.com/grpc/grpc.git
   $ cd grpc/
   $ git submodule update --init
   $ cd third_party/protobuf

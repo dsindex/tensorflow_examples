@@ -140,6 +140,7 @@ tensorflow
   $ cd ../../..
   $ make; sudo make install
   $ which grpc_python_plugin
+  $ pip install grpcio --user
   ```
 - [serving basic](https://tensorflow.github.io/serving/serving_basic)
 - [mlp_mnist_export.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_export.py)

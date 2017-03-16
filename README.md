@@ -131,7 +131,9 @@ tensorflow
   $ cd grpc/
   $ git submodule update --init
   $ cd third_party/protobuf
-  $ sudo apt-get install autoconf
+  # install autoconf
+  # $ sudo apt-get install autoconf
+  # or $ brew install autoconf
   $ ./autogen.sh
   # if you got an error related to 'libtool' on OS X, edit Makefile to use '/usr/bin/libtool' instead of '/usr/local/bin/libtool'
   $ ./configure; make; sudo make install

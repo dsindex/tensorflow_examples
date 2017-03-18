@@ -126,18 +126,21 @@ tensorflow
   - if you have trouble on installing gRPC, see http://dchua.com/2016/04/08/installing-grpc,-protobuf-and-its-dependencies-for-python-development/
   ```shell
   $ sudo find /usr/lib -name "*protobuf*" -delete
-  $ git clone -b $(curl -L http://grpc.io/release) https://github.com/grpc/grpc
+  $ git clone https://github.com/grpc/grpc.git
   $ cd grpc/
   $ git submodule update --init
   $ cd third_party/protobuf
-  $ sudo apt-get install autoconf
+  # install autoconf, libtool (on OS X)
+  $ brew install autoconf && brew install libtool
   $ ./autogen.sh
+  # if you got an error related to 'libtool' on OS X, edit Makefile to use '/usr/bin/libtool' instead of '/usr/local/bin/libtool'
   $ ./configure; make; sudo make install
   $ cd python
-  $ python setup.py build; python setup.py test; sudo python setup.py install
-  $ cd -
+  $ python setup.py build; python setup.py test; sudo python setup.py install --user
+  $ cd ../../..
   $ make; sudo make install
   $ which grpc_python_plugin
+  $ pip install grpcio --user
   ```
 - [serving basic](https://tensorflow.github.io/serving/serving_basic)
 - [mlp_mnist_export.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_export.py)

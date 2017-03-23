@@ -112,9 +112,12 @@ tensorflow
 
 ### word2vec
 - code
-  - [build word2vec model, word2vec.py](https://github.com/dsindex/tensorflow/blob/master/word2vec.py)
-  - [more optimized model, word2vec_optimized.py](https://github.com/dsindex/tensorflow/blob/master/word2vec_optimized.py)
-  - [test and dump word2vec model, test_word2vec.py](https://github.com/dsindex/tensorflow/blob/master/test_word2vec.py)
+  - [word2vec.py](https://github.com/dsindex/tensorflow/blob/master/word2vec.py)
+  - [word2vec_optimized.py](https://github.com/dsindex/tensorflow/blob/master/word2vec_optimized.py)
+  ```
+  tensorflow.python.framework.errors_impl.NotFoundError: dlopen(.../tensorflow_examples/word2vec_ops.so, 6): image not found
+  ```
+  - [test_word2vec.py](https://github.com/dsindex/tensorflow/blob/master/test_word2vec.py)
   ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
 
 ### tensorflow serving
@@ -163,6 +166,7 @@ $ cp ../serving_BUILD tensorflow_serving/example/BUILD
 
 $ bazel build //tensorflow_serving/example:mlp_mnist_export
 $ bazel build //tensorflow_serving/example:mlp_mnist_inference_proto
+# error: invalid argument '-std=gnu99' not allowed with 'C++/ObjC++'
 $ bazel build //tensorflow_serving/example:mlp_mnist_inference
 
 # how to generate 'mlp_mnist_inference_pb2.py'?

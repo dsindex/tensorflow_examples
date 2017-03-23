@@ -1,8 +1,8 @@
 #!/bin/env python
 
 import tensorflow as tf
-from tensorflow.examples.tutorials.mnist import input_data
 from tensorflow.contrib.session_bundle import exporter
+from tensorflow_serving.example import mnist_input_data
 
 tf.app.flags.DEFINE_string('input_path', './MNIST_data', 'input directory path')
 tf.app.flags.DEFINE_integer('training_iteration', 20000,
@@ -19,7 +19,7 @@ def bias_variable(shape):
 	initial = tf.constant(0.1, shape=shape)
 	return tf.Variable(initial)
 
-mnist = input_data.read_data_sets(FLAGS.input_path, one_hot=True)
+mnist = mnist_input_data.read_data_sets(FLAGS.input_path, one_hot=True)
 
 x = tf.placeholder(tf.float32, [None, 28*28])
 y_ = tf.placeholder(tf.float32, [None, 10])

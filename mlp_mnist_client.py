@@ -36,8 +36,7 @@ import numpy
 import tensorflow as tf
 
 from tensorflow_serving.example import mlp_mnist_inference_pb2
-from tensorflow.examples.tutorials.mnist import input_data as mnist_input_data
-
+from tensorflow_serving.example import mnist_input_data
 
 tf.app.flags.DEFINE_integer('concurrency', 1,
                             'maximum number of concurrent inference requests')

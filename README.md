@@ -152,7 +152,9 @@ tensorflow
 $ cd serving
 $ ls serving/
 ... bazel-bin  bazel-genfiles  bazel-out  bazel-serving  bazel-testlogs  tensorflow  tensorflow_serving  tf_models  tools
-
+$ cd tensorflow
+$ ./configure
+$ cd ../
 $ cp ../mlp_mnist_export.py tensorflow_serving/example
 $ cp ../mlp_mnist_inference.proto tensorflow_serving/example
 $ cp ../mlp_mnist_inference.cc tensorflow_serving/example

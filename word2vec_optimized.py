@@ -41,7 +41,8 @@ from six.moves import xrange  # pylint: disable=redefined-builtin
 import numpy as np
 import tensorflow as tf
 
-from tensorflow.models.embedding import gen_word2vec as word2vec
+#from tensorflow.models.embedding import gen_word2vec as word2vec
+word2vec = tf.load_op_library(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'word2vec_ops.so'))
 
 flags = tf.app.flags
 
@@ -126,6 +127,8 @@ class Options(object):
 
     # Where to write out summaries.
     self.save_path = FLAGS.save_path
+    if not os.path.exists(self.save_path):
+        os.makedirs(self.save_path)
 
     # Eval options.
 
@@ -144,9 +147,9 @@ class Word2Vec(object):
     self.build_graph()
     self.build_eval_graph()
     self.save_vocab()
-    self._read_analogies()
+    self.read_analogies()
 
-  def _read_analogies(self):
+  def read_analogies(self):
     """Reads through the analogy question file.
 
     Returns:
@@ -229,7 +232,7 @@ class Word2Vec(object):
     self._labels = labels
     self._lr = lr
     self._train = train
-    self.step = global_step
+    self.global_step = global_step
     self._epoch = current_epoch
     self._words = total_words_processed
 
@@ -238,7 +241,8 @@ class Word2Vec(object):
     opts = self._options
     with open(os.path.join(opts.save_path, "vocab.txt"), "w") as f:
       for i in xrange(opts.vocab_size):
-        f.write("%s %d\n" % (tf.compat.as_text(opts.vocab_words[i]).encode('utf-8'),
+        vocab_word = tf.compat.as_text(opts.vocab_words[i]).encode("utf-8")
+        f.write("%s %d\n" % (vocab_word,
                              opts.vocab_counts[i]))
 
   def build_eval_graph(self):
@@ -322,8 +326,8 @@ class Word2Vec(object):
     last_words, last_time = initial_words, time.time()
     while True:
       time.sleep(5)  # Reports our progress once a while.
-      (epoch, step, words,
-       lr) = self._session.run([self._epoch, self.step, self._words, self._lr])
+      (epoch, step, words, lr) = self._session.run(
+          [self._epoch, self.global_step, self._words, self._lr])
       now = time.time()
       last_words, last_time, rate = words, now, (words - last_words) / (
           now - last_time)
@@ -352,7 +356,10 @@ class Word2Vec(object):
     # How many questions we get right at precision@1.
     correct = 0
 
-    total = self._analogy_questions.shape[0]
+    try:
+      total = self._analogy_questions.shape[0]
+    except AttributeError as e:
+      raise AttributeError("Need to read analogy questions.")
     start = 0
     while start < total:
       limit = start + 2500
@@ -381,8 +388,9 @@ class Word2Vec(object):
     idx = self._predict(wid)
     for c in [self._id2word[i] for i in idx[0, :]]:
       if c not in [w0, w1, w2]:
-        return c
-    return "unknown"
+        print(c)
+        break
+    print("unknown")
 
   def nearby(self, words, num=20):
     """Prints out nearby words given a list of words."""
@@ -414,12 +422,13 @@ def main(_):
   with tf.Graph().as_default(), tf.Session() as session:
     with tf.device("/cpu:0"):
       model = Word2Vec(opts, session)
+      model.read_analogies() # Read analogy questions
     for _ in xrange(opts.epochs_to_train):
       model.train()  # Process one epoch
       model.eval()  # Eval analogies.
     # Perform a final save.
     model.saver.save(session, os.path.join(opts.save_path, "model.ckpt"),
-                     global_step=model.step)
+                     global_step=model.global_step)
     if FLAGS.interactive:
       # E.g.,
       # [0]: model.analogy(b'france', b'paris', b'russia')

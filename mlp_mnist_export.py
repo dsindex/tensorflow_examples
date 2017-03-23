@@ -5,7 +5,7 @@ from tensorflow.contrib.session_bundle import exporter
 from tensorflow_serving.example import mnist_input_data
 
 tf.app.flags.DEFINE_string('input_path', './MNIST_data', 'input directory path')
-tf.app.flags.DEFINE_integer('training_iteration', 20000,
+tf.app.flags.DEFINE_integer('training_iteration', 10000,
                             'number of training iterations.')
 tf.app.flags.DEFINE_integer('export_version', 1, 'version number of the model.')
 tf.app.flags.DEFINE_string('export_path', './export', 'export directory path')

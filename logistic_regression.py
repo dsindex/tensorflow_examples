@@ -33,9 +33,9 @@ sess = tf.Session()
 sess.run(init)
 
 for i in range(2001):
-	sess.run(train, feed_dict={X:x_data, Y:y_data})
-	if i % 20 == 0 :
-		print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
+    sess.run(train, feed_dict={X:x_data, Y:y_data})
+    if i % 20 == 0 :
+        print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
 
 # inference
 print sess.run(y, feed_dict={X:[[1], [2], [3]]})

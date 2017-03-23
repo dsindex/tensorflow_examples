@@ -21,12 +21,12 @@ tensorflow
 - logistic regression
   - binary classification 0 or 1
   - code
-    - [logistic_regression1.py](https://github.com/dsindex/tensorflow/blob/master/logistic_regression1.py)
+    - [logistic_regression.py](https://github.com/dsindex/tensorflow/blob/master/logistic_regression.py)
     - [train_logistic.txt](https://github.com/dsindex/tensorflow/blob/master/train_logistic.txt)
 - softmax regression
   - multinomial (logistic) classification
   - code
-    - [softmax_regression1.py](https://github.com/dsindex/tensorflow/blob/master/softmax_regression1.py)
+    - [softmax_regression.py](https://github.com/dsindex/tensorflow/blob/master/softmax_regression.py)
     - [train_softmax.txt](https://github.com/dsindex/tensorflow/blob/master/train_softmax.txt)
 - RNN
   - recurrent neural network

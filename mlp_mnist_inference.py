@@ -4,12 +4,12 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
 def weight_variable(shape):
-	initial = tf.truncated_normal(shape, stddev=0.1)
-	return tf.Variable(initial)
+    initial = tf.truncated_normal(shape, stddev=0.1)
+    return tf.Variable(initial)
 
 def bias_variable(shape):
-	initial = tf.constant(0.1, shape=shape)
-	return tf.Variable(initial)
+    initial = tf.constant(0.1, shape=shape)
+    return tf.Variable(initial)
 
 mnist = input_data.read_data_sets("./MNIST_data/", one_hot=True)
 
@@ -36,14 +36,14 @@ saver = tf.train.Saver() # save all variables
 checkpoint_dir = './train_logs/'
 ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
 if ckpt and ckpt.model_checkpoint_path :
-	print ckpt.model_checkpoint_path
-	saver.restore(sess, ckpt.model_checkpoint_path)
+    print ckpt.model_checkpoint_path
+    saver.restore(sess, ckpt.model_checkpoint_path)
 else :
-	sys.stderr.write("no checkpoint found" + '\n')
-	sys.exit(-1)
+    sys.stderr.write("no checkpoint found" + '\n')
+    sys.exit(-1)
 
 test_xs, test_ys = mnist.test.next_batch(10000)
-test_accuracy = sess.run(accuracy, feed_dict={x: test_xs, y_: test_ys})	
+test_accuracy = sess.run(accuracy, feed_dict={x: test_xs, y_: test_ys}) 
 print "test accuracy : ", test_accuracy
 
 sess.close()

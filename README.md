@@ -4,7 +4,7 @@ tensorflow
 ### description
 - test code for tensorflow
 - [tensorflow](https://www.tensorflow.org/)
-  - version : 1.0 (on-going)
+  - version : tf 1.0 
 
 ### simple test code
 - [test.py](https://github.com/dsindex/tensorflow/blob/master/test.py)
@@ -154,7 +154,7 @@ $ ls serving/
 ... bazel-bin  bazel-genfiles  bazel-out  bazel-serving  bazel-testlogs  tensorflow  tensorflow_serving  tf_models  tools
 
 $ cp ../mlp_mnist_export.py tensorflow_serving/example
-$ cp ../mlp_mnist_interence.proto tensorflow_serving/example
+$ cp ../mlp_mnist_inference.proto tensorflow_serving/example
 $ cp ../mlp_mnist_inference.cc tensorflow_serving/example
 $ cp ../mlp_mnist_client.py tensorflow_serving/example
 $ cp ../serving_BUILD tensorflow_serving/example/BUILD
@@ -197,28 +197,11 @@ $ python mlp_mnist_export.py --input_path=./MNIST_data --export_path=export
 # but still you need to run bazel for mlp_mnist_export.
 ```
 
-### Translation using RNN with attention
-- [seq2seq tutorial](https://www.tensorflow.org/versions/r0.10/tutorials/seq2seq/index.html)
-- code
-  - [translate.py](https://github.com/dsindex/tensorflow/blob/master/translate.py)
-  ```shell
-  $ mkdir trans_model
-  $ python translate.py --data_dir=parallel_corpus --train_dir=trans_model --size=256 --num_layers=2 --steps_per_checkpoint=50
-  $ python translate.py --decode --data_dir=parallel_corpus --train_dir=trains_model
-  ```
-  - you can utilize this code not only translation but also sequential tagging.
-    - references
-	  - [ATTENTION AND MEMORY IN DEEP LEARNING AND NLP](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/#more-548)
-      - [Grammar as a Foreign Language](https://arxiv.org/pdf/1412.7449v3.pdf)
- 	  - [NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE](http://arxiv.org/pdf/1409.0473v7.pdf)
-
 ## data preprocessing(tf.SequenceExample)
 - [RNNS IN TENSORFLOW, A PRACTICAL GUIDE AND UNDOCUMENTED FEATURES](http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/)
   - [in korean](https://tgjeon.github.io/post/rnns-in-tensorflow/)
 
 ### references
-- [Naive Bayesian, HMM, Maximum Entropy, CRF](https://github.com/dsindex/blog/wiki/%5Bstatistics%5D-Naive-Bayesian,-HMM,-Maximum-Entropy-Model,-CRF)
-- [Neural Network and Deep Learning](https://github.com/dsindex/blog/wiki/%5Bneural-network%5D-neural-network-and-deep-learning)
 - [RNN](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
 - [LSTM](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 - [Word2Vec](https://github.com/dsindex/blog/wiki/%5BWord2Vec%5D-Neural-Language-Model-and-Word2Vec)

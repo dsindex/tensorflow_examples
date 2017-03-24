@@ -66,8 +66,8 @@ hidden_size = vocab_size                           # 8, output from LSTM, direct
 sequence_length = sentence_size - 1                # 10
 batch_size = 1                                     # 1 sentence
 
-X = tf.placeholder(tf.float32, [None, sequence_length, hidden_size])  # X one-hot
-Y = tf.placeholder(tf.int32, [None, sequence_length])                  # Y label
+X = tf.placeholder(tf.float32, [None, sequence_length, input_dim])  # X one-hot
+Y = tf.placeholder(tf.int32, [None, sequence_length])               # Y label
 
 outputs = rnn_model(hidden_size, batch_size, X)
 weights = tf.ones([batch_size, sequence_length])

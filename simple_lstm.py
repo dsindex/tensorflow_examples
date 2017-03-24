@@ -72,8 +72,8 @@ input_dim = vocab_size                  # input dimension, one-hot size, vocab s
 hidden_size = vocab_size                # output form LSTM, directly predict one-hot
 sequence_length = len(sentences[0]) - 1 # time stpes
 
-X = tf.placeholder(tf.float32, [None, sequence_length, hidden_size])  # X one-hot
-Y = tf.placeholder(tf.int32, [None, sequence_length])                 # Y label
+X = tf.placeholder(tf.float32, [None, sequence_length, input_dim])  # X one-hot
+Y = tf.placeholder(tf.int32, [None, sequence_length])               # Y label
 
 outputs = rnn_model(hidden_size, batch_size, X)
 weights = tf.ones([batch_size, sequence_length])

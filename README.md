@@ -111,14 +111,7 @@ tensorflow
 - [char-rnn](https://github.com/sherjilozair/char-rnn-tensorflow)
 
 ### word2vec
-- code
-  - [word2vec.py](https://github.com/dsindex/tensorflow/blob/master/word2vec.py)
-  - [word2vec_optimized.py](https://github.com/dsindex/tensorflow/blob/master/word2vec_optimized.py)
-  ```
-  tensorflow.python.framework.errors_impl.NotFoundError: dlopen(.../tensorflow_examples/word2vec_ops.so, 6): image not found
-  ```
-  - [test_word2vec.py](https://github.com/dsindex/tensorflow/blob/master/test_word2vec.py)
-  ![T-SNE sample](https://github.com/dsindex/tensorflow/blob/master/tsne.png)
+- [vector representation of words](https://www.tensorflow.org/tutorials/word2vec)
 
 ### tensorflow serving
 - [setup tensorflow serving](https://tensorflow.github.io/serving/setup)

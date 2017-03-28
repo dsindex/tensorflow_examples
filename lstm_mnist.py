@@ -55,9 +55,9 @@ def RNN(_X, _istate, _weights, _biases):
 	_X = tf.matmul(_X, _weights['hidden']) + _biases['hidden'] # (?, n_hidden)+scalar(n_hidden,)=(?,n_hidden)
 
 	# Define a lstm cell with tensorflow
-	lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(n_hidden, forget_bias=1.0, state_is_tuple=False)
+	lstm_cell = tf.contrib.rnn.LSTMCell(n_hidden, forget_bias=1.0, state_is_tuple=False)
 	# Split data because rnn cell needs a list of inputs for the RNN inner loop
-	_X = tf.split(0, n_steps, _X) # n_steps splits each of which contains (?, n_hidden)
+	_X = tf.split(_X, n_steps, 0) # n_steps splits each of which contains (?, n_hidden)
 	'''
 	ex)
 	i  split0  split1  split2 .... split27
@@ -67,7 +67,7 @@ def RNN(_X, _istate, _weights, _biases):
     2  (128)     ...               (128)
 	'''
 	# Get lstm cell output
-	outputs, states = tf.nn.rnn(lstm_cell, _X, initial_state=_istate)
+	outputs, states = tf.contrib.rnn.static_rnn(cell=lstm_cell, inputs=_X, initial_state=_istate)
 
 	# Linear activation
 	# Get inner loop last output
@@ -76,7 +76,7 @@ def RNN(_X, _istate, _weights, _biases):
 y = RNN(x, istate, weights, biases)
 
 # training
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(y, y_)) # Softmax loss
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=y, labels=y_)) # Softmax loss
 optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost) # Adam Optimizer
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))

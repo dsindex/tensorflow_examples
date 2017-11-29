@@ -148,6 +148,7 @@ tensorflow
   - [tensorflow tutorial](https://github.com/sherrym/tf-tutorial/blob/master/DeepLearningSchool2016.pdf)
   - [tensorflow mnist inference test using web interface](https://github.com/sugyan/tensorflow-mnist)
   - [distributed tensorflow](https://www.tensorflow.org/versions/r0.8/how_tos/distributed/index.html)
+  - [distributed tensorflow, a gentle introduction](http://amid.fish/distributed-tensorflow-a-gentle-introduction)
   - [tensorboard]( https://www.tensorflow.org/versions/master/how_tos/summaries_and_tensorboard/index.html)
   - [tensorflow C++ image recognition demo](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/label_image)
 - gpu check

@@ -11,8 +11,7 @@ from __future__ import print_function
 import numpy as np
 import tensorflow as tf
 
-#tf.logging.set_verbosity(tf.logging.INFO)
-tf.logging.set_verbosity(tf.logging.WARN)
+tf.logging.set_verbosity(tf.logging.INFO)
 
 def cnn_model_fn(features, labels, mode) :
 	# Input Layer
@@ -87,7 +86,7 @@ if __name__ == "__main__":
 
 	# Set up logging for predictions
 	tensors_to_log = {"probabilities": "softmax_tensor"}
-	logging_hook = tf.train.LoggingTensorHook(tensors=tensors_to_log, every_n_iter=50)
+	logging_hook = tf.train.LoggingTensorHook(tensors=tensors_to_log, every_n_iter=500)
 
 	# Train the model
 	train_input_fn = tf.estimator.inputs.numpy_input_fn(
@@ -99,8 +98,13 @@ if __name__ == "__main__":
 
 	mnist_classifier.train(
 		input_fn=train_input_fn,
+		steps=20000)
+	'''
+	mnist_classifier.train(
+		input_fn=train_input_fn,
 		steps=20000,
 		hooks=[logging_hook])
+	'''
 
 	# Evaluate the model and print results
 	eval_input_fn = tf.estimator.inputs.numpy_input_fn(

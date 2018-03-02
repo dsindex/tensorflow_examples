@@ -53,13 +53,13 @@ tensorflow
 ### IRIS multi-layer perceptron test code
 - code
   - [mlp_iris.py](https://github.com/dsindex/tensorflow/blob/master/mlp_iris.py)
-  - training accuracy : around 96%
+    - accuracy : around 96%
 
 ### MNIST softmax regression test code
 - download MNIST data from http://yann.lecun.com/exdb/mnist/
 - code
   - [softmax_regression_mnist.py](https://github.com/dsindex/tensorflow/blob/master/softmax_regression_mnist.py)
-  - accuracy : around 92%
+    - accuracy : around 92%
 - softmax regression is same as : 
   - multinomial logistic regression 
   - maximum entropy classifier
@@ -69,7 +69,7 @@ tensorflow
 - code
   - [mlp_mnist_train.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_train.py)
   - [mlp_mnist_inference.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_inference.py)
-  - accuracy : around 98%
+    - accuracy : around 98%
 - distributed version
   - [mlp_mnist_dist.py](https://github.com/dsindex/tensorflow/blob/master/mlp_mnist_dist.py)
   - training using parameter servers and workers
@@ -97,13 +97,14 @@ tensorflow
 ### MNIST convolutaional neural network test code
 - code
   - [conv_mnist1.py](https://github.com/dsindex/tensorflow/blob/master/conv_mnist1.py)
+    - accuracy : around 99%
   - [conv_mnist2.py](https://github.com/dsindex/tensorflow/blob/master/conv_mnist2.py)
-  - accuracy : around 99%
+    - accuracy : around 98.15%
 
 ### MNIST LSTM(recurrent neural network) test code
 - code
   - [lstm_mnist.py](https://github.com/dsindex/tensorflow/blob/master/lstm_mnist.py)
-  - accuracy : around 97%
+    - accuracy : around 97%
 
 ### RNN
 - code

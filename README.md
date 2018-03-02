@@ -96,7 +96,8 @@ tensorflow
 
 ### MNIST convolutaional neural network test code
 - code
-  - [conv_mnist.py](https://github.com/dsindex/tensorflow/blob/master/conv_mnist.py)
+  - [conv_mnist1.py](https://github.com/dsindex/tensorflow/blob/master/conv_mnist1.py)
+  - [conv_mnist2.py](https://github.com/dsindex/tensorflow/blob/master/conv_mnist2.py)
   - accuracy : around 99%
 
 ### MNIST LSTM(recurrent neural network) test code

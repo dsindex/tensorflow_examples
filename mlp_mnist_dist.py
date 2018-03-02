@@ -79,7 +79,7 @@ def main(_):
         sv.start_queue_runners(sess)
 
         # Loop until the supervisor shuts down (or 1000000 steps have completed).
-        mnist = input_data.read_data_sets("./MNIST_data/", one_hot=True)
+        mnist = input_data.read_data_sets("./MNIST-data/", one_hot=True)
         step = 0
         while not sv.should_stop() and step < 10000:
             # Run a training step asynchronously.

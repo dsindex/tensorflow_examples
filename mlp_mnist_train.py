@@ -11,7 +11,7 @@ def bias_variable(shape):
         initial = tf.constant(0.1, shape=shape)
         return tf.Variable(initial)
 
-mnist = input_data.read_data_sets("./MNIST_data/", one_hot=True)
+mnist = input_data.read_data_sets("./MNIST-data/", one_hot=True)
 
 x = tf.placeholder(tf.float32, [None, 28*28])
 y_ = tf.placeholder(tf.float32, [None, 10])

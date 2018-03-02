@@ -21,7 +21,7 @@ def conv2d(x, W):
 def max_pool_2x2(x):
 	return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
-mnist = input_data.read_data_sets("./MNIST_data/", one_hot=True)
+mnist = input_data.read_data_sets("./MNIST-data/", one_hot=True)
 x = tf.placeholder(tf.float32, [None, 28*28])
 x_image = tf.reshape(x, [-1,28,28,1])     # 784 -> 28 x 28 x 1
 y_ = tf.placeholder(tf.float32, [None, 10])
@@ -30,13 +30,13 @@ y_ = tf.placeholder(tf.float32, [None, 10])
 W_conv1 = weight_variable([5, 5, 1, 32]) # 5 x 5 receptive field, 1 input channel, 32 feature maps
 b_conv1 = bias_variable([32])            # 32 feature maps's bias
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1) # 28 x 28 x 1 -> 0-padding -> 32 x 32 x 1 -> conv -> 28 x 28 x 32
-h_pool1 = max_pool_2x2(h_conv1)                          # 28 x 28 x 32 -> pool -> 14 x 14 x 32 -> 0-padding -> 18 x 18 x 32
+h_pool1 = max_pool_2x2(h_conv1)                          # 28 x 28 x 32 -> pool -> 14 x 14 x 32
 # 0-padding : http://cs.stackexchange.com/questions/49658/convolutional-neural-network-example-in-tensorflow
 
 # second convolutional layer
 W_conv2 = weight_variable([5, 5, 32, 64]) # 5 x 5 receptive field, 32 input channel, 64 feature maps
 b_conv2 = bias_variable([64])             # 64 feature maps's bias
-h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2) # 18 x 18 x 32 -> 14 x 14 x 64
+h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2) # 14 x 14 x 32 -> 14 x 14 x 64
 h_pool2 = max_pool_2x2(h_conv2)                          # 14 x 14 x 64 -> 7 x 7 x 64
 
 # fully connected layer

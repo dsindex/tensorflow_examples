@@ -138,9 +138,14 @@ tensorflow
   ```
 - [serving basic](https://tensorflow.github.io/serving/serving_basic)
 
-## data preprocessing(tf.SequenceExample)
+### data preprocessing(tf.SequenceExample)
 - [RNNS IN TENSORFLOW, A PRACTICAL GUIDE AND UNDOCUMENTED FEATURES](http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/)
   - [in korean](https://tgjeon.github.io/post/rnns-in-tensorflow/)
+
+## model dump and inference
+  - simple example
+    - [dump_model.py](https://github.com/dsindex/tensorflow/blob/master/dump_model.py)
+    - [inference_model.py](https://github.com/dsindex/tensorflow/blob/master/inference_model.py)
 
 ### references
 - [RNN](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)

@@ -52,3 +52,33 @@ with tf.Session() as sess:
 	print y
 	print type(ret)
 	print ret
+
+x = tf.placeholder(tf.float32, shape=(1024))
+y = tf.placeholder(tf.float32, shape=(1024))
+s = tf.reduce_sum(tf.multiply(x, y))
+with tf.Session() as sess:
+	rand_array1 = np.random.rand(1024)
+	rand_array2 = np.random.rand(1024)
+	ret = sess.run(s, feed_dict={x: rand_array1, y: rand_array2})
+	print type(ret)
+	print ret
+
+x = tf.placeholder(tf.float32, shape=(1024))
+print x
+x_mat = tf.reshape(x, [1, -1])
+print x_mat
+y = tf.placeholder(tf.float32, shape=(1024))
+print y
+y_mat = tf.reshape(y, [-1, 1])
+print y_mat
+s = tf.matmul(x_mat, y_mat)
+print s
+scalar = tf.reshape(s, [])
+with tf.Session() as sess:
+	rand_array1 = np.random.rand(1024)
+	rand_array2 = np.random.rand(1024)
+	ret = sess.run(scalar, feed_dict={x: rand_array1, y: rand_array2})
+	print type(ret)
+	print ret
+
+

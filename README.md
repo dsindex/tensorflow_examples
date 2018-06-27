@@ -9,7 +9,7 @@ tensorflow
 ### simple test code
 - [test.py](https://github.com/dsindex/tensorflow/blob/master/test.py)
 
-### [tutorial video by sungkim(in korean)](http://hunkim.github.io/ml/)
+### [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
 - linear regression
   - predict real value
   - code

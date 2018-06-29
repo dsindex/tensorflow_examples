@@ -7,7 +7,9 @@ tensorflow
   - version : tf 1.0 
 
 ### simple test code
-- [test.py](https://github.com/dsindex/tensorflow/blob/master/test.py)
+- [test1.py](https://github.com/dsindex/tensorflow/blob/master/test1.py)
+- [test2.py](https://github.com/dsindex/tensorflow/blob/master/test2.py)
+- [test3.py](https://github.com/dsindex/tensorflow/blob/master/test3.py)
 
 ### [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
 - linear regression

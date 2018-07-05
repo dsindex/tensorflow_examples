@@ -15,4 +15,5 @@ with tf.Session() as sess:
 	print [x,y,z]
 	print sess.run(s0)
 	print sess.run(s1)
+	print sess.run(tf.sign([-1, -0.2, 0.3]))
 

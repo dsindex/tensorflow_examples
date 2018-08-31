@@ -148,6 +148,8 @@ tensorflow
   - simple example
     - [dump_model.py](https://github.com/dsindex/tensorflow/blob/master/dump_model.py)
     - [inference_model.py](https://github.com/dsindex/tensorflow/blob/master/inference_model.py)
+  - build api using keras with tf backend
+    - [reference](https://towardsdatascience.com/deploying-keras-deep-learning-models-with-flask-5da4181436a2)
 
 ### references
 - [RNN](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)

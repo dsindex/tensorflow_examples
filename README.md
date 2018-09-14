@@ -10,6 +10,8 @@ tensorflow
 - [test1.py](https://github.com/dsindex/tensorflow/blob/master/test1.py)
 - [test2.py](https://github.com/dsindex/tensorflow/blob/master/test2.py)
 - [test3.py](https://github.com/dsindex/tensorflow/blob/master/test3.py)
+- [test4.py](https://github.com/dsindex/tensorflow/blob/master/test4.py)
+- [test5.py](https://github.com/dsindex/tensorflow/blob/master/test5.py)
 
 ### [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
 - linear regression

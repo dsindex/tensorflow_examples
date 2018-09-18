@@ -43,9 +43,22 @@ inputs = tf.constant([ [ [1, 1, 1, 0],
                          [0, 0, 0, 0],
                          [0, 0, 0, 0 ] ] ], dtype=tf.float32)
 
+gamma = tf.constant([1, 1, 0, 0], dtype=tf.float32)
+gamma_3d = tf.expand_dims(tf.expand_dims(gamma, 0), 0)
+mean, variance = tf.nn.moments(inputs, [-1], keep_dims=True)
+mean_tile = tf.tile(mean, [1, 1, 4])
 outputs = normalize(inputs)
 
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
     sess.run(init_op)
-    print(sess.run(outputs))
+    print('inputs', sess.run(inputs))
+    print('gamma', sess.run(gamma))
+    print('gamma * inputs', sess.run(gamma * inputs))
+    print('gamma_3d', sess.run(gamma_3d))
+    print('gamma_3d * inputs', sess.run(gamma_3d * inputs))
+    print('mean', sess.run(mean))
+    print('inputs - mean', sess.run(inputs - mean))
+    print('mean_tile', sess.run(mean_tile))
+    print('inputs - mean_tile', sess.run(inputs - mean_tile))
+    print('outputs', sess.run(outputs))

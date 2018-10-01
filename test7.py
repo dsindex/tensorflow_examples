@@ -24,6 +24,8 @@ y = tf.expand_dims(x, -1)
 dim = 5
 z = tf.tile(y, [1, 1, dim])
 
+bc = tf.constant([1.0, 0.5, 0.5, 0.4, 0.1], dtype=tf.float32)
+
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
 	sess.run(init_op)
@@ -31,3 +33,5 @@ with tf.Session() as sess:
 	print sess.run(z)
     # element-wise
 	print sess.run(d*z)
+	# broadcasting
+	print sess.run(d*bc)

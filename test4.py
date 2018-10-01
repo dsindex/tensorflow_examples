@@ -10,7 +10,7 @@ y = tf.constant([ [2, 5, 7, 8],
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
 	sess.run(init_op)
-	print sess.run(tf.reduce_max(y, reduction_indices=0))
-	# [ 5  7 10  8]
-	print sess.run(tf.reduce_max(y, reduction_indices=1))
-	# [ 8 10  7]
+	print sess.run(tf.reduce_min(y, axis=-2, keep_dims=True))
+	# [[ 2  4  3 -2]]
+	print sess.run(tf.reduce_min(y, axis=-1))
+	# [ 2  2 -2]

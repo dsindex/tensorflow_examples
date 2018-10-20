@@ -5,10 +5,10 @@ import tensorflow as tf
 import numpy as np
 
 def one_hot(y_data) :
-	a = np.array(y_data, dtype=int)
-	b = np.zeros((a.size, a.max()+1))
-	b[np.arange(a.size),a] = 1
-	return b
+    a = np.array(y_data, dtype=int)
+    b = np.zeros((a.size, a.max()+1))
+    b[np.arange(a.size),a] = 1
+    return b
 
 xy_data = np.loadtxt('train_iris.txt', unpack=True, dtype='float32')
 
@@ -19,9 +19,9 @@ x0 = np.array([[1]*train_size])
 x_data = np.concatenate((x0, x_data), axis=0) # 5 x None
 x_data = np.transpose(x_data)                 # None x 5
 '''
-[ [1	2	14	33	50],
-  [1	24	56	31	67],
-  [1	23	51	31	69],
+[ [1    2    14    33    50],
+  [1    24    56    31    67],
+  [1    23    51    31    69],
   .... ]
 '''
 print x_data
@@ -64,12 +64,12 @@ saver = tf.train.Saver() # save all variables
 checkpoint_dir = './'
 checkpoint_file = 'iris.ckpt'
 for i in range(2000):
-	if i % 100 == 0 :
-		print "step : ", i
-		print "cost : ", sess.run(cost, feed_dict={X: x_data, Y: y_data})
-		print sess.run(W)
-		print "training accuracy :", sess.run(accuracy, feed_dict={X: x_data, Y: y_data})
-	sess.run(train, feed_dict={X:x_data, Y:y_data})
+    if i % 100 == 0 :
+        print "step : ", i
+        print "cost : ", sess.run(cost, feed_dict={X: x_data, Y: y_data})
+        print sess.run(W)
+        print "training accuracy :", sess.run(accuracy, feed_dict={X: x_data, Y: y_data})
+    sess.run(train, feed_dict={X:x_data, Y:y_data})
 
 # save model
 saver.save(sess, checkpoint_dir + checkpoint_file)

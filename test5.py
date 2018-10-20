@@ -25,10 +25,10 @@ print u
 
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
-	sess.run(init_op)
-	print sess.run(y)
-	print sess.run(z)
-	print sess.run(k)
-	print sess.run(w)
-	print sess.run(j)
-	print sess.run(u)
+    sess.run(init_op)
+    print sess.run(y)
+    print sess.run(z)
+    print sess.run(k)
+    print sess.run(w)
+    print sess.run(j)
+    print sess.run(u)

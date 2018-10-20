@@ -16,10 +16,10 @@ saver = tf.train.Saver() # save all variables
 checkpoint_dir = './'
 ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
 if ckpt and ckpt.model_checkpoint_path :
-	saver.restore(sess, ckpt.model_checkpoint_path)
+    saver.restore(sess, ckpt.model_checkpoint_path)
 else :
-	sys.stderr.write("no checkpoint found" + '\n')
-	sys.exit(-1)
+    sys.stderr.write("no checkpoint found" + '\n')
+    sys.exit(-1)
 
 p = sess.run(y, feed_dict={X:[[1,2,14,33,50]]}) # 1 0 0 -> type 0
 print p, sess.run(tf.arg_max(p, 1))

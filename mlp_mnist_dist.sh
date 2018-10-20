@@ -92,26 +92,26 @@ PDIR=$(readlink -f $(dirname $(readlink -f ${BASH_SOURCE[0]}))/..)
 
 function make_calmness()
 {
-	exec 3>&2 # save 2 to 3
-	exec 2> /dev/null
+    exec 3>&2 # save 2 to 3
+    exec 2> /dev/null
 }
 
 function revert_calmness()
 {
-	exec 2>&3 # restore 2 from previous saved 3(originally 2)
+    exec 2>&3 # restore 2 from previous saved 3(originally 2)
 }
 
 function close_fd()
 {
-	exec 3>&-
+    exec 3>&-
 }
 
 function jumpto
 {
-	label=$1
-	cmd=$(sed -n "/$label:/{:a;n;p;ba};" $0 | grep -v ':$')
-	eval "$cmd"
-	exit
+    label=$1
+    cmd=$(sed -n "/$label:/{:a;n;p;ba};" $0 | grep -v ':$')
+    eval "$cmd"
+    exit
 }
 
 
@@ -125,7 +125,7 @@ function jumpto
 
 make_calmness
 if (( VERBOSE_MODE > 1 )); then
-	revert_calmness
+    revert_calmness
 fi
 
 IP=localhost
@@ -138,24 +138,24 @@ model_path=${CDIR}/train_logs
 rm -rf ${model_path}
 
 function run_ps {
-	nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
-			   --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
-			   --job_name=ps --task_index=0 &
-	nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
-			   --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
-			   --job_name=ps --task_index=1 &
+    nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
+               --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
+               --job_name=ps --task_index=0 &
+    nohup python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
+               --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
+               --job_name=ps --task_index=1 &
 }
 run_ps
 
 function run_worker {
-	time python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
-			   --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
-			   --job_name=worker --task_index=0 \
-			   --model_path=${model_path} &
-	time python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
-			   --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
-			   --job_name=worker --task_index=1 \
-			   --model_path=${model_path} &
+    time python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
+               --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
+               --job_name=worker --task_index=0 \
+               --model_path=${model_path} &
+    time python ${CDIR}/mlp_mnist_dist.py --ps_hosts=${IP}:${PORT_1},${IP}:${PORT_2} \
+               --worker_hosts=${IP}:${PORT_3},${IP}:${PORT_4} \
+               --job_name=worker --task_index=1 \
+               --model_path=${model_path} &
 }
 run_worker
 

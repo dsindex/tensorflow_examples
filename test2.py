@@ -11,9 +11,9 @@ s1 = tf.stack([x,y,z], axis=1)   # pack along second dim
 
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
-	sess.run(init_op)
-	print [x,y,z]
-	print sess.run(s0)
-	print sess.run(s1)
-	print sess.run(tf.sign([-1, -0.2, 0.3]))
+    sess.run(init_op)
+    print [x,y,z]
+    print sess.run(s0)
+    print sess.run(s1)
+    print sess.run(tf.sign([-1, -0.2, 0.3]))
 

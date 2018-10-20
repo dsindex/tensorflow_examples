@@ -5,18 +5,18 @@ import tensorflow as tf
 import numpy as np
 
 def one_hot(y_data) :
-	a = np.array(y_data, dtype=int)
-	b = np.zeros((a.size, a.max()+1))
-	b[np.arange(a.size),a] = 1
-	return b
+    a = np.array(y_data, dtype=int)
+    b = np.zeros((a.size, a.max()+1))
+    b[np.arange(a.size),a] = 1
+    return b
 
 def weight_variable(shape):
-	initial = tf.truncated_normal(shape, stddev=0.1)
-	return tf.Variable(initial)
+    initial = tf.truncated_normal(shape, stddev=0.1)
+    return tf.Variable(initial)
 
 def bias_variable(shape):
-	initial = tf.constant(0.1, shape=shape)
-	return tf.Variable(initial)
+    initial = tf.constant(0.1, shape=shape)
+    return tf.Variable(initial)
 
 xy_data = np.loadtxt('train_iris.txt', unpack=True, dtype='float32')
 
@@ -27,9 +27,9 @@ x0 = np.array([[1]*train_size])
 x_data = np.concatenate((x0, x_data), axis=0) # 5 x None
 x_data = np.transpose(x_data)                 # None x 5
 '''
-[ [1	2	14	33	50],
-  [1	24	56	31	67],
-  [1	23	51	31	69],
+[ [1    2    14    33    50],
+  [1    24    56    31    67],
+  [1    23    51    31    69],
   .... ]
 '''
 print x_data
@@ -74,10 +74,10 @@ init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 for i in range(20000):
-	if i % 100 == 0 :
-		print "step : ", i
-		print "cost : ", sess.run(cost, feed_dict={X: x_data, Y: y_data})
-		print "training accuracy :", sess.run(accuracy, feed_dict={X: x_data, Y: y_data})
-	sess.run(train, feed_dict={X:x_data, Y:y_data})
+    if i % 100 == 0 :
+        print "step : ", i
+        print "cost : ", sess.run(cost, feed_dict={X: x_data, Y: y_data})
+        print "training accuracy :", sess.run(accuracy, feed_dict={X: x_data, Y: y_data})
+    sess.run(train, feed_dict={X:x_data, Y:y_data})
 
 sess.close()

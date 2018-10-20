@@ -17,25 +17,25 @@ import numpy as np
 '''
 xy_data = np.loadtxt('train_softmax.txt', unpack=True, dtype='float32')
 x_data = np.transpose(xy_data[0:3]) # [ [1,1,1,1,1],    <-- 3 x None matrix
-	                                #   [2,3,3,5,7,2], 
-	                                #   [1,2,4,5,5,5] ]
-	                                # transpose T
-	                                # [ [1,2,1],        <-- None x 3 matrix
-	                                #   [1,3,2],
-	                                #   [1,3,4],
-	                                #   [1,5,5],
-	                                #   [1,7,5],
-	                                #   [1,2,5] ]
+                                    #   [2,3,3,5,7,2], 
+                                    #   [1,2,4,5,5,5] ]
+                                    # transpose T
+                                    # [ [1,2,1],        <-- None x 3 matrix
+                                    #   [1,3,2],
+                                    #   [1,3,4],
+                                    #   [1,5,5],
+                                    #   [1,7,5],
+                                    #   [1,2,5] ]
 y_data = np.transpose(xy_data[3:])  # [ [0,0,0,0,0],    <-- 3 x None matrix
-	                                #   [0,0,0,1,1,1], 
-	                                #   [1,1,1,0,0,0] ]
-	                                # transpose T       <-- None x 3 matrix
-	                                # [ [0,0,1],
-	                                #   [0,0,1],
-	                                #   [0,0,1],
-	                                #   [0,1,0],
-	                                #   [0,1,0],
-	                                #   [0,1,0] ]
+                                    #   [0,0,0,1,1,1], 
+                                    #   [1,1,1,0,0,0] ]
+                                    # transpose T       <-- None x 3 matrix
+                                    # [ [0,0,1],
+                                    #   [0,0,1],
+                                    #   [0,0,1],
+                                    #   [0,1,0],
+                                    #   [0,1,0],
+                                    #   [0,1,0] ]
 
 X = tf.placeholder("float", [None, 3]) # row : infinity, col : 3 for x0/x1/x2
 Y = tf.placeholder("float", [None, 3]) # row : infinity, col : 3 for A/B/C target class which is encoded in one-hot representation
@@ -56,9 +56,9 @@ sess = tf.Session()
 sess.run(init)
 
 for i in range(2001):
-	sess.run(train, feed_dict={X:x_data, Y:y_data})
-	if i % 20 == 0 :
-		print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
+    sess.run(train, feed_dict={X:x_data, Y:y_data})
+    if i % 20 == 0 :
+        print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
 
 # inference
 p = sess.run(y, feed_dict={X:[[1,2,1]]}) # 0 0 1 -> C, index 2

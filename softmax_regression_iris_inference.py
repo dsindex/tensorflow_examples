@@ -1,5 +1,6 @@
 #!./bin/env python
 
+from __future__ import print_function
 import sys
 import tensorflow as tf
 import numpy as np
@@ -22,12 +23,12 @@ else :
     sys.exit(-1)
 
 p = sess.run(y, feed_dict={X:[[1,2,14,33,50]]}) # 1 0 0 -> type 0
-print p, sess.run(tf.arg_max(p, 1))
+print(p, sess.run(tf.arg_max(p, 1)))
 
 p = sess.run(y, feed_dict={X:[[1,24,56,31,67]]}) # 0 1 0 -> type 1
-print p, sess.run(tf.arg_max(p, 1))
+print(p, sess.run(tf.arg_max(p, 1)))
 
 p = sess.run(y, feed_dict={X:[[1,2,14,33,50], [1,24,56,31,67]]})
-print p, sess.run(tf.arg_max(p, 1))
+print(p, sess.run(tf.arg_max(p, 1)))
 
 sess.close()

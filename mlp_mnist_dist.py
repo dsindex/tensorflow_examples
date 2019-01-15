@@ -4,6 +4,7 @@
 reference : https://www.tensorflow.org/versions/r0.8/how_tos/distributed/index.html
 '''
 
+from __future__ import print_function
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
@@ -30,7 +31,7 @@ def main(_):
 
     # Create a cluster from the parameter server and worker hosts.
     cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
-    print cluster._cluster_spec
+    print(cluster._cluster_spec)
 
     # Create and start a server for the local task.
     #server = tf.train.Server(cluster.as_cluster_def(), job_name=FLAGS.job_name, task_index=FLAGS.task_index)
@@ -87,7 +88,7 @@ def main(_):
             # perform *synchronous* training.
             batch_xs, batch_ys = mnist.train.next_batch(50)
             if step % 100 == 0:
-                print "job : %s/%s" % (FLAGS.job_name,FLAGS.task_index), "step : ", step, ",training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys}) 
+                print("job : %s/%s" % (FLAGS.job_name,FLAGS.task_index), "step : ", step, ",training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys}))
             _, step = sess.run([train_op, global_step], feed_dict={x: batch_xs, y_: batch_ys})
 
         # save model

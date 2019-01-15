@@ -1,5 +1,6 @@
 #!./bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 
 # linear regression test
@@ -24,6 +25,6 @@ sess.run(init)
 for i in range(2001):
     sess.run(train)
     if i % 20 == 0 :
-        print i, sess.run(cost), sess.run(W)
+        print(i, sess.run(cost), sess.run(W))
 
 sess.close()

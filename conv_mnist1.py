@@ -4,6 +4,7 @@
 reference : https://www.tensorflow.org/versions/r0.7/tutorials/mnist/pros/index.html
 '''
 
+from __future__ import print_function
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
@@ -65,12 +66,12 @@ sess.run(init)
 for i in range(20000):
     batch_xs, batch_ys = mnist.train.next_batch(50)
     if i % 100 == 0:
-        print "step : ", i, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys, keep_prob: 1.0})    
+        print("step : ", i, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys, keep_prob: 1.0}))
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys, keep_prob: 0.5})
 
 # inference
 test_xs, test_ys = mnist.test.next_batch(10000)
 test_accuracy = sess.run(accuracy, feed_dict={x: test_xs, y_: test_ys, keep_prob: 1.0})    
-print "test accuracy : ", test_accuracy
+print("test accuracy : ", test_accuracy)
 
 sess.close()

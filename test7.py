@@ -1,5 +1,6 @@
 #!/bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 
@@ -43,11 +44,11 @@ bc2 = tf.constant([1.0, 1.0, 1.0, 0.0, 0.0], dtype=tf.float32)
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
     sess.run(init_op)
-    print 'y', sess.run(y)
-    print 'z', sess.run(z)
+    print('y', sess.run(y))
+    print('z', sess.run(z))
     # element-wise
-    print 'd*z', sess.run(d*z)
+    print('d*z', sess.run(d*z))
     # broadcasting 1
-    print 'd*y', sess.run(d*y)
+    print('d*y', sess.run(d*y))
     # broadcasting 2
-    print 'd*bc2', sess.run(d*bc2)
+    print('d*bc2', sess.run(d*bc2))

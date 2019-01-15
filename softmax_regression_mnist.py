@@ -1,5 +1,6 @@
 #!/bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
@@ -28,10 +29,10 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 for i in range(20000):
     batch_xs, batch_ys = mnist.train.next_batch(50)
     if i % 100 == 0:
-        print "step : ", i, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys})    
+        print("step : ", i, "training accuracy :", sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys}))
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
 # inference
-print sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 
 sess.close()

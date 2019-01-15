@@ -1,5 +1,6 @@
 #!/bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 
@@ -18,5 +19,5 @@ i, out = tf.while_loop(c, b, (tf.constant(0), x))
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
     sess.run(init_op)
-    print sess.run([i, out], feed_dict={n:10})
-    print 'count = ', count
+    print(sess.run([i, out], feed_dict={n:10}))
+    print('count = ', count)

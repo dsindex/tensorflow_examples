@@ -1,5 +1,6 @@
 #!./bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 
@@ -35,12 +36,12 @@ sess.run(init)
 for i in range(2001):
     sess.run(train, feed_dict={X:x_data, Y:y_data})
     if i % 20 == 0 :
-        print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
+        print(i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W))
 
 # inference
-print sess.run(y, feed_dict={X:[[1], [2], [3]]})
-print sess.run(y, feed_dict={X:[[1], [5], [5]]})
-print sess.run(y, feed_dict={X:[[1,1], [4,3], [3,5]]})
+print(sess.run(y, feed_dict={X:[[1], [2], [3]]}))
+print(sess.run(y, feed_dict={X:[[1], [5], [5]]}))
+print(sess.run(y, feed_dict={X:[[1,1], [4,3], [3,5]]}))
 
 sess.close()
 

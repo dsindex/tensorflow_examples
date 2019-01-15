@@ -1,5 +1,6 @@
 #!./bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 
@@ -58,16 +59,16 @@ sess.run(init)
 for i in range(2001):
     sess.run(train, feed_dict={X:x_data, Y:y_data})
     if i % 20 == 0 :
-        print i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
+        print(i, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W))
 
 # inference
 p = sess.run(y, feed_dict={X:[[1,2,1]]}) # 0 0 1 -> C, index 2
-print p, sess.run(tf.arg_max(p, 1))
+print(p, sess.run(tf.arg_max(p, 1)))
 
 p = sess.run(y, feed_dict={X:[[1,5,5]]}) # 0 1 0 -> B, index 1
-print p, sess.run(tf.arg_max(p, 1))
+print(p, sess.run(tf.arg_max(p, 1)))
 
 p = sess.run(y, feed_dict={X:[[1,2,1], [1,5,5]]})
-print p, sess.run(tf.arg_max(p, 1))
+print(p, sess.run(tf.arg_max(p, 1)))
 
 sess.close()

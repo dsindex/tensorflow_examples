@@ -1,5 +1,6 @@
 #!/bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
@@ -44,16 +45,16 @@ checkpoint_file = 'mlp.ckpt'
 for i in range(10000) :
         batch_xs, batch_ys = mnist.train.next_batch(50)
         if i % 100 == 0 :
-                print "step : ", i
+                print("step : ", i)
                 p, a = sess.run([correct_prediction, accuracy], feed_dict={x: batch_xs, y_: batch_ys})
-                print "prediction for batch: "
-                print p
-                print "accuracy for batch : ", a
+                print("prediction for batch: ")
+                print(p)
+                print("accuracy for batch : ", a)
 
         sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
 # save model
 saver.save(sess, checkpoint_dir + checkpoint_file)
-print "model saved in ", checkpoint_dir + checkpoint_file
+print("model saved in ", checkpoint_dir + checkpoint_file)
 
 sess.close()

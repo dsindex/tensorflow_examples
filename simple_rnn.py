@@ -3,6 +3,7 @@
 # simple character based RNN 
 # ex) input 'hello worl', output 'ello world'
 
+from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 
@@ -47,18 +48,18 @@ def rnn_model(hidden_sizie, batch_size, X) :
     cell = tf.contrib.rnn.BasicLSTMCell(num_units=hidden_size, state_is_tuple=True)
     initial_state = cell.zero_state(batch_size, tf.float32)
     outputs, _states = tf.nn.dynamic_rnn(cell=cell, inputs=X, initial_state=initial_state, dtype=tf.float32)
-    print outputs
+    print(outputs)
     return outputs
 
 sentence = 'hello world'                           # sentence = 'this is a simple RNN'
 sentence_size = len(sentence)
-print 'sentence = ' + sentence
-print 'sentence size = %d' % sentence_size
+print('sentence = ' + sentence)
+print('sentence size = %d' % sentence_size)
 
 # build dictionary
 idx2char, char2idx = build_dictionary(sentence)
 vocab_size = len(char2idx)
-print 'vocab size = %d' % vocab_size               # vocab size : 8
+print('vocab size = %d' % vocab_size)              # vocab size : 8
 
 # config
 input_dim = vocab_size                             # one-hot size
@@ -79,9 +80,9 @@ prediction = tf.argmax(outputs, axis=2)
 
 # build a x_data
 x_data = build_x_data(sentence, sequence_length, char2idx)
-print x_data
+print(x_data)
 y_data = build_y_data(sentence[1:], sequence_length, char2idx)
-print y_data
+print(y_data)
 
 
 with tf.Session() as sess:

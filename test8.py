@@ -1,5 +1,6 @@
 #!/bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 
@@ -20,5 +21,5 @@ result = tf.reshape(a_padded, [2, 3])
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
     sess.run(init_op)
-    print sess.run(a)
-    print sess.run(result)
+    print(sess.run(a))
+    print(sess.run(result))

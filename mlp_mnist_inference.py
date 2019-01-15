@@ -1,5 +1,6 @@
 #!./bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
@@ -36,7 +37,7 @@ saver = tf.train.Saver() # save all variables
 checkpoint_dir = './train_logs/'
 ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
 if ckpt and ckpt.model_checkpoint_path :
-    print ckpt.model_checkpoint_path
+    print(ckpt.model_checkpoint_path)
     saver.restore(sess, ckpt.model_checkpoint_path)
 else :
     sys.stderr.write("no checkpoint found" + '\n')
@@ -44,6 +45,6 @@ else :
 
 test_xs, test_ys = mnist.test.next_batch(10000)
 test_accuracy = sess.run(accuracy, feed_dict={x: test_xs, y_: test_ys}) 
-print "test accuracy : ", test_accuracy
+print("test accuracy : ", test_accuracy)
 
 sess.close()

@@ -1,5 +1,6 @@
 #!./bin/env python
 
+from __future__ import print_function
 import sys
 import tensorflow as tf
 import numpy as np
@@ -24,7 +25,7 @@ x_data = np.transpose(x_data)                 # None x 5
   [1    23    51    31    69],
   .... ]
 '''
-print x_data
+print(x_data)
 
 y_data = xy_data[0]                # 1 x None
 '''
@@ -37,7 +38,7 @@ y_data = one_hot(y_data)           # None x 3
   [0 1 0],
   ... ]
 '''
-print y_data
+print(y_data)
 
 X = tf.placeholder("float", [None, 5]) # row : infinity, col : 5 for x
 Y = tf.placeholder("float", [None, 3]) # row : infinity, col : 3 for y target class which is encoded in one-hot representation
@@ -65,10 +66,10 @@ checkpoint_dir = './'
 checkpoint_file = 'iris.ckpt'
 for i in range(2000):
     if i % 100 == 0 :
-        print "step : ", i
-        print "cost : ", sess.run(cost, feed_dict={X: x_data, Y: y_data})
-        print sess.run(W)
-        print "training accuracy :", sess.run(accuracy, feed_dict={X: x_data, Y: y_data})
+        print("step : ", i)
+        print("cost : ", sess.run(cost, feed_dict={X: x_data, Y: y_data}))
+        print(sess.run(W))
+        print("training accuracy :", sess.run(accuracy, feed_dict={X: x_data, Y: y_data}))
     sess.run(train, feed_dict={X:x_data, Y:y_data})
 
 # save model

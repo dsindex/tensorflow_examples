@@ -1,5 +1,6 @@
 # source code from https://github.com/PatWie/tensorflow_inference
 
+from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 
@@ -19,8 +20,8 @@ with tf.Session() as sess:
 
     t1, t2, t3, x = sess.run([t1, t2, t3, x], {x: val})
 
-    print tf.global_variables()
-    print "input           ", x
-    print "output          ", t1
-    print "dense/kernel:0  ", t2
-    print "dense/bias:0    ", t3
+    print(tf.global_variables())
+    print("input           ", x)
+    print("output          ", t1)
+    print("dense/kernel:0  ", t2)
+    print("dense/bias:0    ", t3)

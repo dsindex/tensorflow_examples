@@ -4,6 +4,7 @@
 reference : https://github.com/aymericdamien/TensorFlow-Examples/blob/master/examples/3%20-%20Neural%20Networks/recurrent_network.py
 '''
 
+from __future__ import print_function
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import numpy as np
@@ -91,11 +92,11 @@ while step * batch_size < training_iters :
     if step % display_step == 0 :
         acc = sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys, istate: c_istate})
         loss = sess.run(cost, feed_dict={x: batch_xs, y_: batch_ys, istate: c_istate})
-        print "step : " + str(step*batch_size) + ", Minibatch Loss= " + "{:.6f}".format(loss) + ", Training Accuracy= " + "{:.5f}".format(acc)
+        print("step : " + str(step*batch_size) + ", Minibatch Loss= " + "{:.6f}".format(loss) + ", Training Accuracy= " + "{:.5f}".format(acc))
     step += 1
 
 # inference
 test_len = 256
 test_data = mnist.test.images[:test_len].reshape((-1, n_steps, n_input))
 test_label = mnist.test.labels[:test_len]
-print "test accuracy : ", sess.run(accuracy, feed_dict={x: test_data, y_: test_label, istate: np.zeros((test_len, 2*n_hidden))})
+print("test accuracy : ", sess.run(accuracy, feed_dict={x: test_data, y_: test_label, istate: np.zeros((test_len, 2*n_hidden))}))

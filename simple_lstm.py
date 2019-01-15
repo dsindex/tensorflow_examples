@@ -1,5 +1,6 @@
 #!/bin/env python
 
+from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 
@@ -44,7 +45,7 @@ def rnn_model(hidden_sizie, batch_size, X) :
     cell = tf.contrib.rnn.BasicLSTMCell(num_units=hidden_size, state_is_tuple=True)
     initial_state = cell.zero_state(batch_size, tf.float32)
     outputs, _states = tf.nn.dynamic_rnn(cell=cell, inputs=X, initial_state=initial_state, dtype=tf.float32)
-    print outputs
+    print(outputs)
     return outputs
 
 
@@ -99,7 +100,7 @@ with tf.Session() as sess:
         step += 1
 
     # inference
-    print "-----------------------------------------"
+    print("-----------------------------------------")
     begin = 0
     batch_size = 4
     batch_xs, batch_ys, begin = next_batch(sentences, begin, batch_size, sequence_length, char2idx)

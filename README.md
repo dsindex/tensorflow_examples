@@ -3,6 +3,7 @@ tensorflow
 
 ### description
 - test code for tensorflow
+- python 2.7
 - [tensorflow](https://www.tensorflow.org/)
   - version : tf 1.0 
 

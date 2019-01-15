@@ -14,15 +14,16 @@ data = np.reshape(np.arange(30), [5, 6])
 x = tf.constant(data)
 
 # [ 8 27 17]
-#result = tf.gather_nd(x, [[1, 2], [4, 3], [2, 5]])
+result1 = tf.gather_nd(x, [[1, 2], [4, 3], [2, 5]])
 
-# [[ 0  2  4]
-#  [ 7  9 11]]
-result = tf.gather_nd(x, [[[0, 0], [0, 2], [0, 4]],
-                          [[1, 1], [1, 3], [1, 5]],])
+# treat [0, 0] as padding, and ignore all [i, 0]
+# [[1 2 4 0]
+#  [7 9 0 0]]
+result2 = tf.gather_nd(x, [[[0, 1], [0, 2], [0, 4], [0, 0]],
+                           [[1, 1], [1, 3], [0, 0], [0, 0]],])
 
 init_op = tf.global_variables_initializer()
 with tf.Session() as sess:
     sess.run(init_op)
-    out = sess.run(result)
+    out = sess.run(result2)
     print(out)

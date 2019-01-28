@@ -17,6 +17,7 @@ tensorflow
 - [test8.py](https://github.com/dsindex/tensorflow/blob/master/test8.py)
 - [test9.py](https://github.com/dsindex/tensorflow/blob/master/test9.py)
 - [test10.py](https://github.com/dsindex/tensorflow/blob/master/test10.py)
+- [test11.py](https://github.com/dsindex/tensorflow/blob/master/test11.py)
 
 ### [tutorial video by hunkim(in korean)](http://hunkim.github.io/ml/)
 - linear regression

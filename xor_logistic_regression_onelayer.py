@@ -10,9 +10,9 @@ import numpy as np
 
 x_ = tf.placeholder(tf.float32, shape=[4,3], name="x-input")
 y_ = tf.placeholder(tf.float32, shape=[4,1], name="y-input")
-Theta1 = tf.Variable(tf.random_uniform([3,2], -1, 1), name="Theta1")
-Bias1 = tf.Variable(tf.zeros([2]), name="Bias1")
-Hypothesis = tf.sigmoid(tf.matmul(x_, Theta1) + Bias1)
+W1 = tf.Variable(tf.random_uniform([3,2], -1, 1), name="W1")
+b1 = tf.Variable(tf.zeros([2]), name="b1")
+Hypothesis = tf.sigmoid(tf.matmul(x_, W1) + b1)
 cost = tf.reduce_mean(( (y_ * tf.log(Hypothesis)) + ((1 - y_) * tf.log(1.0 - Hypothesis)) ) * -1)
 train_step = tf.train.GradientDescentOptimizer(0.01).minimize(cost)
 
@@ -20,7 +20,7 @@ predicted = tf.cast(Hypothesis > 0.5, dtype=tf.float32)
 accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, y_), dtype=tf.float32))  
 
 
-# x1, x2, x1*x2
+# x1, x2, x1*x2(feature combination)
 XOR_X = [[0,0,0],
          [0,1,0],
          [1,0,0],
@@ -42,8 +42,8 @@ for i in range(100000):
         print('Hypothesis ', h)
         print('Predicted ', p)
         print('Accuracy ', a)
-        print('Theta1 ', sess.run(Theta1))
-        print('Bias1 ', sess.run(Bias1))
+        print('W1 ', sess.run(W1))
+        print('b1 ', sess.run(b1))
         print('cost ', sess.run(cost, feed_dict={x_: XOR_X, y_: XOR_Y})) 
 
 sess.close()

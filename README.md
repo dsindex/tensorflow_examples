@@ -33,6 +33,8 @@ tensorflow
   - code
     - [logistic_regression.py](https://github.com/dsindex/tensorflow/blob/master/logistic_regression.py)
     - [train_logistic.txt](https://github.com/dsindex/tensorflow/blob/master/train_logistic.txt)
+    - [xor_logistic_regression.py](https://github.com/dsindex/tensorflow/blob/master/xor_logistic_regression.py)
+    - [xor_logistic_regression_onelayer.py](https://github.com/dsindex/tensorflow/blob/master/xor_logistic_regression_onelayer.py)
 - softmax regression
   - multinomial (logistic) classification
   - code

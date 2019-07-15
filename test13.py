@@ -29,3 +29,4 @@ ja_result = session.run(embedded_text, feed_dict={text_input: japanese_sentences
 
 # Compute similarity matrix. Higher score indicates greater similarity.
 similarity_matrix_ja = np.inner(en_result, ja_result)
+print(similarity_matrix_ja)

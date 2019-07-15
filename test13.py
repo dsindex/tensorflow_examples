@@ -30,3 +30,8 @@ ja_result = session.run(embedded_text, feed_dict={text_input: japanese_sentences
 # Compute similarity matrix. Higher score indicates greater similarity.
 similarity_matrix_ja = np.inner(en_result, ja_result)
 print(similarity_matrix_ja)
+'''
+[[0.95641255 0.57370234 0.27371472]  -> dog : 犬
+ [0.3986755  0.6300337  0.30383107]  -> Puppies are nice. : 子犬はいいです
+ [0.25403124 0.21047902 0.8134757 ]] -> I enjoy taking long walks along the beach with my dog. : 私は犬と一緒にビーチを散歩するのが好きです
+'''

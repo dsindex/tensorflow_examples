@@ -6,6 +6,12 @@ import tensorflow_hub as hub
 import numpy as np
 import tf_sentencepiece
 
+'''
+python -m pip install tensorflow-gpu==1.11.0
+python -m pip install tensorflow-hub==0.4.0
+python -m pip install tf_sentencepiece==0.1.6
+'''
+
 # Some texts of different lengths.
 english_sentences = ["dog", "Puppies are nice.", "I enjoy taking long walks along the beach with my dog."]
 japanese_sentences = ["犬", "子犬はいいです", "私は犬と一緒にビーチを散歩するのが好きです"]

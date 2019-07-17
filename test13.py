@@ -41,3 +41,18 @@ print(similarity_matrix_ja)
  [0.3986755  0.6300337  0.30383107]  -> Puppies are nice. : 子犬はいいです
  [0.25403124 0.21047902 0.8134757 ]] -> I enjoy taking long walks along the beach with my dog. : 私は犬と一緒にビーチを散歩するのが好きです
 '''
+
+# Some texts of different lengths.
+q_sentences = ["오늘 날씨 어때"]
+faq_sentences = ["오늘 판교 날씨 알려줘", "오늘 습도 알려줘", "판교까지 얼마나 걸려", "오늘 더워?"]
+
+# Compute embeddings.
+q_result = session.run(embedded_text, feed_dict={text_input: q_sentences})
+faq_result = session.run(embedded_text, feed_dict={text_input: faq_sentences})
+
+# Compute similarity matrix. Higher score indicates greater similarity.
+similarity_matrix = np.inner(q_result, faq_result)
+print(similarity_matrix)
+'''
+[[0.82803273 0.66021335 0.1759353  0.600948  ]] -> '오늘 날씨 어때' : '오늘 판교 날씨 알려줘'
+'''

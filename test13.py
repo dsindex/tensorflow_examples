@@ -6,6 +6,9 @@ import tensorflow_hub as hub
 import numpy as np
 import tf_sentencepiece
 
+import sys
+import time
+
 '''
 python -m pip install tensorflow-gpu==1.11.0
 python -m pip install tensorflow-hub==0.4.0
@@ -29,9 +32,15 @@ g.finalize()
 session = tf.Session(graph=g)
 session.run(init_op)
 
+start_time = time.time()
+
 # Compute embeddings.
 en_result = session.run(embedded_text, feed_dict={text_input: english_sentences})
 ja_result = session.run(embedded_text, feed_dict={text_input: japanese_sentences})
+
+duration_time = time.time() - start_time
+p = 'duration_time: ' + str(duration_time) + ' sec'
+sys.stderr.write(p + '\n')
 
 # Compute similarity matrix. Higher score indicates greater similarity.
 similarity_matrix_ja = np.inner(en_result, ja_result)
